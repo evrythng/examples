@@ -1,0 +1,27 @@
+AngularJS / Bootstrap mobile Web App
+
+Uses EVRYTHNG.JS and SCANThng.js
+
+Deployed to heroku
+
+download, run bower and npm
+
+built with yoeman angular, https://github.com/yeoman/generator-angular
+
+Added modules :
+
+fontawesome : better icons
+bootstrap social : social icons
+angularLocalstorage : HTML 5 local storage
+spin.js : spinner
+
+grunt serve : run it
+grunt build : create dist
+
+
+
+
+
+
+
+

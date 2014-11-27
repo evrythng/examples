@@ -1,0 +1,14 @@
+{
+  "name": "localLibraries",
+  "version": "0.0.0",
+  "dependencies": {
+    "bootstrap": "*",
+    "jquery": "*",
+    "evrythng": "*",
+    "scanthng": "*"
+  },
+  "devDependencies": {
+  },
+  "appPath": "app"
+}
+
