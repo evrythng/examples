@@ -1,6 +1,7 @@
 #Training Material
 
-## curl : Example Curl requests to access the API
+## curl : 
+Example Curl requests to access the API
 
 ## examples :
 
@@ -45,7 +46,6 @@
   Sample Postman calls
 
 ## trainingDemos :
-
     1 - ListProducts
     list products
     2 - ScanProducts
@@ -54,6 +54,7 @@
     Add a new User
     4 - UpdateFieldsAndProperties
     Update Custom fields and properties on a product
+    
 
 
 
