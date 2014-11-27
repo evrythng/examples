@@ -36,7 +36,7 @@ function callbackAction(error, response, body) {
 function getUserKey() {
   var userDetails = {
     "email": "cokeusertestrules@mcc.com",
-    "password": "admin123"
+    "password": "PASSWORD"
   };
   var options = {
     method: 'POST',

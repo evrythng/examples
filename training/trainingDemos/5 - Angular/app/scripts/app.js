@@ -73,7 +73,7 @@ angular
     //
     .config(function(EvrythngAppProvider){
         var evrythngOptions = {
-            apiKey: 'lAwoL9SRTFx6SJFsR6qvpqj0G8MeSL2k6m4Lq2npugZLKV07aMf0mr5V9x4kVYnuNUCIgGcLvrUMCzuU',
+            apiKey: 'EVRYTHNGKEY',
             facebook: true
         };
 
@@ -85,7 +85,7 @@ angular
     .config(function(ScanthngProvider){
         var scanthngOptions = {
             scanType: 'OBJPICT',
-            apiKey: 'lAwoL9SRTFx6SJFsR6qvpqj0G8MeSL2k6m4Lq2npugZLKV07aMf0mr5V9x4kVYnuNUCIgGcLvrUMCzuU'
+            apiKey: 'EVRYTHNGKEY'
         };
 
         ScanthngProvider.init(scanthngOptions);
