@@ -2,7 +2,7 @@
 /*jslint devel: true */
 // Facebook App
   var projectKey = 'hxhcvFSh928vg7hi8QR0Jnj77PDeqEJfYTM9BNfkFW2iOMYiUuSrtCBcdVpg8DRQnqSlo3PnTvfiXuhx';
-//  var projectKey = 'N6uTbKr2xOUv6xmlUNsSiZQKxVVnhGkIsOQ5ixifHNZFye3WXtwMFxkJogJLKWTy4LFFp5V4sFZZxpsI';
+//  var projectKey = 'EVRYTHNGPROJECTKEY';
 // Instantiate Base EVRYTHNG Object
 
 //EVT.setup({

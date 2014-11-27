@@ -3,7 +3,7 @@
  *
  * uses request library https://github.com/request/request
  */
-var operatorKey = 'I1gL9iHt3IEsn2icY6NFXreEFl3lP62HTM40neKxJrRV3Dkis3dTTmNulzZoLlBxJA1Zj0ybU1g7BVeI';
+var operatorKey = 'EVRYTHNGOPERATORKEY';
 var body = {};
 body.description = "Updated Description in REST Call";
 

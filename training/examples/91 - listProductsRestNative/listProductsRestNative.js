@@ -3,7 +3,7 @@
  *
  * uses request library https://github.com/request/request
  */
-var operatorKey = 'viRSkcMRwCRXVVbVKa9tKdm8rVxRzhIidM1EgvDHJkqdWHtP8WtOR2xsBjHPm7izuUBGyH2T4Pzbv72K';
+var operatorKey = 'EVRYTHNGOPERATORKEY';
 
 var request = require('request');
 

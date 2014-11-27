@@ -15,7 +15,7 @@
 	"requests": [
 		{
 			"id": "00ea4851-ddf2-4adb-57dd-aa9c019bc84d",
-			"headers": "Authorization: I1gL9iHt3IEsn2icY6NFXreEFl3lP62HTM40neKxJrRV3Dkis3dTTmNulzZoLlBxJA1Zj0ybU1g7BVeI\nContent-Type: application/json\n",
+			"headers": "Authorization: EVRYTHNGKEY\nContent-Type: application/json\n",
 			"url": "https://api.evrythng.com/products/UeXVkYNePeKa4VqqW7ahDyam",
 			"pathVariables": {},
 			"preRequestScript": "",
@@ -35,7 +35,7 @@
 		},
 		{
 			"id": "02040a6d-2edd-0fa5-bd96-743219ce0974",
-			"headers": "Authorization: I1gL9iHt3IEsn2icY6NFXreEFl3lP62HTM40neKxJrRV3Dkis3dTTmNulzZoLlBxJA1Zj0ybU1g7BVeI\nContent-Type: application/json\n",
+			"headers": "Authorization: EVRYTHNGKEY\nContent-Type: application/json\n",
 			"url": "https://api.evrythng.com/products?app=all",
 			"preRequestScript": "",
 			"pathVariables": {},
@@ -54,7 +54,7 @@
 		},
 		{
 			"id": "47ca5b4e-4e92-5cc7-6e4f-cecd556e1a57",
-			"headers": "Authorization: I1gL9iHt3IEsn2icY6NFXreEFl3lP62HTM40neKxJrRV3Dkis3dTTmNulzZoLlBxJA1Zj0ybU1g7BVeI\nContent-Type: application/json\n",
+			"headers": "Authorization: EVRYTHNGKEY\nContent-Type: application/json\n",
 			"url": "https://api.evrythng.com/products/UVDdHXd9sBpadHWh5HyXQpnr",
 			"pathVariables": {},
 			"preRequestScript": "",
@@ -74,7 +74,7 @@
 		},
 		{
 			"id": "9042f801-6799-f51f-96a1-fe5938b8cca3",
-			"headers": "Authorization: I1gL9iHt3IEsn2icY6NFXreEFl3lP62HTM40neKxJrRV3Dkis3dTTmNulzZoLlBxJA1Zj0ybU1g7BVeI\nContent-Type: application/json\n",
+			"headers": "Authorization: EVRYTHNGKEY\nContent-Type: application/json\n",
 			"url": "https://api.evrythng.com/products",
 			"preRequestScript": "",
 			"pathVariables": {},
@@ -90,9 +90,7 @@
 			"responses": [],
 			"synced": false
 		},
-		{
-			"id": "b831a66a-a785-8acb-12a0-95539ea4c1c6",
-			"headers": "Authorization: I1gL9iHt3IEsn2icY6NFXreEFl3lP62HTM40neKxJrRV3Dkis3dTTmNulzZoLlBxJA1Zj0ybU1g7BVeI\nContent-Type: application/json\n",
+			"headers": "Authorization: EVRYTHNGKEY\nContent-Type: application/json\n",
 			"url": "https://api.evrythng.com/products?filter=tags=cereal",
 			"pathVariables": {},
 			"preRequestScript": "",
@@ -111,3 +109,5 @@
 		}
 	]
 }
+		{
+			"id": "b831a66a-a785-8acb-12a0-95539ea4c1c6",

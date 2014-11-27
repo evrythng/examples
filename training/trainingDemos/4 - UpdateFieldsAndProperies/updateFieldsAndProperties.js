@@ -1,11 +1,11 @@
 /*global EVT, getUserContext, scanObj, $, EvrythngCokeWrapper  */
 /*jslint devel: true */
 
-  var projectKey = 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui';
+  var projectKey = 'EVRYTHNGPROJECTKEY';
 
 // Do Not use this key for front End Work, is here as example only
 
-  var operatorKey = 'I1gL9iHt3IEsn2icY6NFXreEFl3lP62HTM40neKxJrRV3Dkis3dTTmNulzZoLlBxJA1Zj0ybU1g7BVeI';
+  var operatorKey = 'EVRYTHNGOPERATORKEY';
 
 // Instantiate Base EVRYTHNG Object
   var app = new EVT.App(operatorKey);

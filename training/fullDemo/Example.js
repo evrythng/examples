@@ -1,7 +1,7 @@
 /*global EVT, getUserContext, scanObj, $, EvrythngCokeWrapper  */
 /*jslint devel: true */
 
-  var projectKey = 'Opvz32M27fqu3KlSnlwjI7xKI2mevilcWPSsTW9g3yUB4krUVUVqN3p3x1KxMALWLQaYbD2AcvVnrupM';
+  var projectKey = 'EVRYTHNGPROJECTKEY';
 // Instantiate Base EVRYTHNG Object
   var app = new EVT.App(projectKey);
 // Instantiate Coke wrapper Function
@@ -132,7 +132,7 @@
         lon: longitude,
         maxDist: distance
       },
-      authorization: 'viRSkcMRwCRXVVbVKa9tKdm8rVxRzhIidM1EgvDHJkqdWHtP8WtOR2xsBjHPm7izuUBGyH2T4Pzbv72K'
+      authorization: 'EVRYTHNGOPERATORKEY'
     }).then(function (places) {
       console.log(places);
       $('#results').html('<h2>Closest Retailers</h2>' + JSON.stringify(places, null, 4));
@@ -144,7 +144,7 @@
     // can be filtered by Tags (eg all tescos / carrefour)
     EVT.api({
       url: '/places',
-      authorization: 'viRSkcMRwCRXVVbVKa9tKdm8rVxRzhIidM1EgvDHJkqdWHtP8WtOR2xsBjHPm7izuUBGyH2T4Pzbv72K'
+      authorization: 'EVRYTHNGOPERATORKEY'
     }).then(function (places) {
       console.log(places);
       $('#results').html('<h2>All Retailers</h2>' + JSON.stringify(places, null, 4));

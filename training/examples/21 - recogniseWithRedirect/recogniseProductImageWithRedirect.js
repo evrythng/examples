@@ -1,7 +1,7 @@
 /*global EVT, getUserContext, scanObj, $, EvrythngCokeWrapper  */
 /*jslint devel: true */
 
-var projectKey = 'N6uTbKr2xOUv6xmlUNsSiZQKxVVnhGkIsOQ5ixifHNZFye3WXtwMFxkJogJLKWTy4LFFp5V4sFZZxpsI';
+var projectKey = 'EVRYTHNGPROJECTKEY';
 // Instantiate Base EVRYTHNG Object
 EVT.setup({
   apiUrl: 'https://api-staging.evrythng.net'

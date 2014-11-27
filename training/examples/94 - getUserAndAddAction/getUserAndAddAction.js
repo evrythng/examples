@@ -3,7 +3,7 @@
  *
  * uses request library https://github.com/request/request
  */
-var appKey = 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui';
+var appKey = 'EVRYTHNGPROJECTKEY';
 var body = {};
 
 var request = require('request');
@@ -54,7 +54,7 @@ function addActionOnProduct() {
     "type": "_Purchase",
     "product": "UVAdnpxbPepRQEN9gKV6AfEa"
   };
-  var userKey = '1LY4ZGesX5ir2Xi48kE22h7J430jB2iThCx6utg4iaoNFgWEyhdu1FgN0yVVAjBkrnx4VNIHo6gESsxm';
+  var userKey = 'EVRYTHNGUSERKEY';
   var ActionType = "_Purchase";
 
   var options = {
