@@ -4,7 +4,6 @@
 Example Curl requests to access the API
 
 ## examples :
-
   1 - List Products
   List products on an instance
   2 - recogniseProductImage
