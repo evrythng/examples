@@ -15,30 +15,40 @@ Sample curl requests to access the API
 List products on an instance
 - recogniseProductImage
 
-  Use the EVRYTHNG product recognition Service
-  3 - viewProductDataAfterScan
+Use the EVRYTHNG product recognition Service
+- viewProductDataAfterScan
+  
   Get the product data after a scan
-  4 - CreateAnonymousUser
+- CreateAnonymousUser
+
   Create an anonymous user. The anonymous user is needed when a user is not asked to register. The User context
   is used to add Actions to products (like scans)
-  5 - saveAnonymousUserOnDevice
+- saveAnonymousUserOnDevice
+
   Saves the anonymous user details on the local storage, so that the user can be reused.
-  6 - addAction
+- addAction
+
   Adds an Action to a Product
-  7 - Filtering
+- Filtering
+
   filtering the list of objects returned from the engine
-  8 - facebook login
+- facebook login
+
   authenticate with facebook
-  9 - rules
-    engineRule :
+- rules
+  - engineRule
+    
     example Campaign Redirection Rule
-    mochaTests
+  - mochaTests
+    
     saves the rule to the engine and runs tests against that rule
-  91 - listProductsrestNative
+- listProductsrestNative
+  
   nodeJS server app to list products using the NODE "request" module
-  92 - updateProductRestNative
+- updateProductRestNative
+
   nodeJS server app to update a product
-  93 - getActionRestNative
+- 93 - getActionRestNative
   nodeJS server app to get the action from the API
   94 - getUserAndAddAction
   nodeJS server app to get a user and then add an action to a product
