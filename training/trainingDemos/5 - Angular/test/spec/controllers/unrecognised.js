@@ -3,7 +3,7 @@
 describe('Controller: UnrecognisedCtrl', function () {
 
   // load the controller's module
-  beforeEach(module('cokeApp'));
+  beforeEach(module('trainingApp'));
 
   var UnrecognisedCtrl,
     scope;
