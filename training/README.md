@@ -82,6 +82,9 @@ These are used to show the code as part of the training course
 - UpdateFieldsAndProperties
 
     Update Custom fields and properties on a product
+- Angular
+
+    An Angular JS Application
     
 ## final project
 
