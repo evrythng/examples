@@ -68,6 +68,10 @@
         var response = {};
         // found product, return URL, unless the rule has not been defined
         function productFound(action, product) {
+
+          // the following logic is used when the evrythng rules engine is used to
+          // determine the next App to start after the scan, so change the response as needed
+
           if (typeof action.reactions[0].data.redirectUrl === "undefined") {
             response.rc = 4;
             response.error = "no URL Returned";
