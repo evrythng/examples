@@ -48,31 +48,44 @@ Use the EVRYTHNG product recognition Service
 - updateProductRestNative
 
   nodeJS server app to update a product
-- 93 - getActionRestNative
+- getActionRestNative
+
   nodeJS server app to get the action from the API
-  94 - getUserAndAddAction
+- getUserAndAddAction
+
   nodeJS server app to get a user and then add an action to a product
 
-  A - Scanning Wrapper
+- Scanning Wrapper
+
   a sample wrapper library for user authentication, scanning, and query string parameter identification
 
-  fullDemo
-  A Full deployable demo that does scanning and redirection
+- fullDemo
+  
+  A demo that does scanning and redirection
 
 ## postman
   Sample Postman calls
 
-## trainingDemos :
-    1 - ListProducts
+## trainingDemos 
+
+These are used to show the code as part training course
+ 
+- ListProducts
+
     list products
-    2 - ScanProducts
+- ScanProducts
+
     scan a product
-    3 - New User
+- New User
+
     Add a new User
-    4 - UpdateFieldsAndProperties
+- UpdateFieldsAndProperties
+
     Update Custom fields and properties on a product
     
+## final project
 
+Template for final project
 
 
 
