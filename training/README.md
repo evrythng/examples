@@ -1,5 +1,10 @@
 #Training Material
 
+All Keys need to be updated when running samples against you EVRYTHNG instance.
+
+var projectKey = 'EVRYTHNGPROJECTKEY';
+
+
 ## curl : 
 Example Curl requests to access the API
 
