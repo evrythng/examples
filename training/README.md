@@ -11,8 +11,10 @@ Sample curl requests to access the API
 ## examples
 
 - ListProducts
+
 List products on an instance
 - recogniseProductImage
+
   Use the EVRYTHNG product recognition Service
   3 - viewProductDataAfterScan
   Get the product data after a scan
