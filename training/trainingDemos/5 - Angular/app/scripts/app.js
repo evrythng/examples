@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name cokeApp
+ * @name esteeApp
  * @description
- * # cokeApp
+ * # esteeApp
  *
  * Main module of the application.
  */
 angular
-  .module('cokeApp', [
+  .module('esteeApp', [
     'ngCookies',
     'ngRoute',
     'evrythng',
@@ -27,23 +27,15 @@ angular
         templateUrl: 'views/about.html',
         controller: 'AboutCtrl'
       })
-      .when('/classic/:bottleId', {
-        templateUrl: 'views/classic.html',
-        controller: 'ClassicCtrl'
+      .when('/campaign/:bottleId', {
+        templateUrl: 'views/Campaign.html',
+        controller: 'CampaignCtrl'
       })
-      .when('/diet/:bottleId', {
-        templateUrl: 'views/diet.html',
-        controller: 'DietCtrl'
+      .when('/loyalty/:bottleId', {
+        templateUrl: 'views/loyalty.html',
+        controller: 'LoyaltyCtrl'
       })
-      .when('/zero/:bottleId', {
-        templateUrl: 'views/zero.html',
-        controller: 'ZeroCtrl'
-      })
-      .when('/unrecognised', {
-        templateUrl: 'views/unrecognised.html',
-        controller: 'UnrecognisedCtrl'
-      })
-      .when('/facebook', {
+      .when('/dacebook/:bottleId', {
         templateUrl: 'views/facebook.html',
         controller: 'FacebookCtrl'
       })
@@ -51,17 +43,21 @@ angular
         templateUrl: 'views/unrecognised.html',
         controller: 'UnrecognisedCtrl'
       })
-      .when('/classicscan', {
-        templateUrl: 'views/classicscan.html',
-        controller: 'ClassicscanCtrl'
+      .when('/unrecognised', {
+        templateUrl: 'views/unrecognised.html',
+        controller: 'UnrecognisedCtrl'
       })
-      .when('/dietscan', {
-        templateUrl: 'views/dietscan.html',
-        controller: 'DietscanCtrl'
+      .when('/campaignscan', {
+        templateUrl: 'views/campaignscan.html',
+        controller: 'CampaignScanCtrl'
       })
-      .when('/zeroscan', {
-        templateUrl: 'views/zeroscan.html',
-        controller: 'ZeroscanCtrl'
+      .when('/loyaltyscan', {
+        templateUrl: 'views/loyaltyscan.html',
+        controller: 'LoyaltyScanCtrl'
+      })
+      .when('/facebookscan', {
+        templateUrl: 'views/facebookscan.html',
+        controller: 'FacebookScanCtrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -73,7 +69,7 @@ angular
     //
     .config(function(EvrythngAppProvider){
         var evrythngOptions = {
-            apiKey: 'EVRYTHNGKEY',
+            apiKey: 'tzdcutX2sqUSPRdqWh91hu1rMSOL39lm3DhMhN5OIoiPYONfuu43fU7ZHfiXaRmNtOhKNPB4kqaAnNB2',
             facebook: true
         };
 
@@ -85,7 +81,7 @@ angular
     .config(function(ScanthngProvider){
         var scanthngOptions = {
             scanType: 'OBJPICT',
-            apiKey: 'EVRYTHNGKEY'
+            apiKey: 'tzdcutX2sqUSPRdqWh91hu1rMSOL39lm3DhMhN5OIoiPYONfuu43fU7ZHfiXaRmNtOhKNPB4kqaAnNB2'
         };
 
         ScanthngProvider.init(scanthngOptions);

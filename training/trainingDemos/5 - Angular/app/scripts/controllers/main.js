@@ -2,20 +2,21 @@
 
 /**
  * @ngdoc function
- * @name cokeApp.controller:MainCtrl
+ * @name esteeApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the cokeApp
+ * Controller of the esteeApp
  */
-angular.module('cokeApp')
+angular.module('esteeApp')
   .controller('MainCtrl', function ($scope, $location, Scanthng,storage) {
 
         $scope.visits = storage.get('visits');
 
         $scope.scanBottle = function() {
             console.log('scan');
-            Scanthng.config({redirect: true, errorCb : scanError});
-            Scanthng.identify();
+            Scanthng.config({redirect: true, errorCb : scanError, spinner : { auto: true }});
+            var id = Scanthng.identify();
+            console.log(id);
         };
 
         $scope.resetVisits = function() {

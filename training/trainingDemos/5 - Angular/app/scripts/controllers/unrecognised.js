@@ -2,25 +2,19 @@
 
 /**
  * @ngdoc function
- * @name cokeApp.controller:UnrecognisedCtrl
+ * @name esteeApp.controller:UnrecognisedCtrl
  * @description
  * # UnrecognisedCtrl
- * Controller of the cokeApp
+ * Controller of the esteeApp
  */
-angular.module('cokeApp')
-  .controller('UnrecognisedCtrl', function ($scope,$location, Scanthng) {
+angular.module('esteeApp')
+  .controller('UnrecognisedCtrl', function ($scope,$location,EvrythngApp ) {
 
-        $scope.launch = function(product) {
-            console.log('coke');
-            Scanthng.config({redirect: false});
-            Scanthng.identify();
-            Scanthng.config({redirect: true});
-            $location.path('/' + product + '/UAq3c5P2sVKwfKMq7KCAggbs');
-        };
-
-        $scope.redirect = function(product) {
-            $location.path('/' + product + 'scan');
-        };
-
-
+    $scope.all = {}
+    EvrythngApp.product().read().then(function(products) {
+      console.log(products);
+      $scope.all.products = products;
+      $scope.$apply();
     });
+
+  });
