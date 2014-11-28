@@ -5,13 +5,14 @@ All Keys need to be updated when running samples against you EVRYTHNG instance.
 var projectKey = 'EVRYTHNGPROJECTKEY';
 
 
-## curl : 
-Example Curl requests to access the API
+## curl 
+Sample curl requests to access the API
 
-## examples :
-  1 - List Products
-  List products on an instance
-  2 - recogniseProductImage
+## examples
+
+- List Products
+List products on an instance
+- recogniseProductImage
   Use the EVRYTHNG product recognition Service
   3 - viewProductDataAfterScan
   Get the product data after a scan
