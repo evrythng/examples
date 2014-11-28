@@ -12,10 +12,10 @@ Sample curl requests to access the API
 
 - ListProducts
 
-List products on an instance
+  List products on an instance
 - recogniseProductImage
 
-Use the EVRYTHNG product recognition Service
+  Use the EVRYTHNG product recognition Service
 - viewProductDataAfterScan
   
   Get the product data after a scan
