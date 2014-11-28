@@ -57,7 +57,7 @@ Sample curl requests to access the API
 
 - Scanning Wrapper
 
-  a sample wrapper library for user authentication, scanning, and query string parameter identification
+  a sample wrapper library for user authentication, scanning, and query string parameter identification.
 
 ## fullDemo
   
