@@ -68,7 +68,7 @@ Use the EVRYTHNG product recognition Service
 
 ## trainingDemos 
 
-These are used to show the code as part training course
+These are used to show the code as part of the training course
  
 - ListProducts
 
