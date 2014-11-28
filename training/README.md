@@ -10,7 +10,7 @@ Sample curl requests to access the API
 
 ## examples
 
-- List Products
+- ListProducts
 List products on an instance
 - recogniseProductImage
   Use the EVRYTHNG product recognition Service
