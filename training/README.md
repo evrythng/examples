@@ -59,9 +59,13 @@ Sample curl requests to access the API
 
   a sample wrapper library for user authentication, scanning, and query string parameter identification
 
-- fullDemo
+## fullDemo
   
   A demo that does scanning and redirection
+    
+## final project
+
+Template for final project
 
 ## postman
   Sample Postman calls
@@ -85,10 +89,7 @@ These are used to show the code as part of the training course
 - Angular
 
     An Angular JS Application
-    
-## final project
 
-Template for final project
 
 
 
