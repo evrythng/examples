@@ -44,7 +44,7 @@ angular
   })
     // Configure EVT (EvrythngJS) provider here
     // facebook false
-    // facebook app id 8VAPBenT78jBSIhuG7l3ZRy18Bt1Xx0NbsWcesvdkt3xYCyja9dhQ9ZFQSJKNv4xXfSAa5xT4yO01xVP
+    // facebook app id
     //
   .config(function(EvrythngAppProvider){
       var projectKey = 'EVRYTHNGPROJECTKEY';
