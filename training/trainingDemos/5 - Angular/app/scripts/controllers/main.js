@@ -8,11 +8,8 @@
  * Controller of the trainingApp
  */
 angular.module('trainingApp')
-  .controller('MainCtrl', function ($scope, $location, Scanthng,storage, CampaignRedirection) {
-
-
+  .controller('MainCtrl', function ($scope, $location, Scanthng, storage, CampaignRedirection) {
     // number of times product scanned
-
     $scope.visits = storage.get('visits');
 
     $scope.scanBottle = function() {
@@ -36,5 +33,5 @@ angular.module('trainingApp')
       var redirect = CampaignRedirection.getredirectionDetails(data.evrythngId);
       $location.path(redirect.route);
       $scope.$apply();
-    }
+    };
   });

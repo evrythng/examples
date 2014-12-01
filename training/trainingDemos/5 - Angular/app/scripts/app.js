@@ -9,13 +9,12 @@
  * Main module of the application.
  */
 angular
-  .module('trainingApp', [
-    'ngCookies',
-    'ngRoute',
-    'evrythng',
-    'angularLocalStorage',
-    'angularSpinner',
-    'scanthng'
+  .module('trainingApp',[
+      'ngCookies',
+      'ngRoute',
+      'angularLocalStorage',
+      'evrythng',
+      'scanthng'
   ])
   .config(function ($routeProvider) {
     $routeProvider
@@ -47,27 +46,28 @@ angular
     // facebook false
     // facebook app id 8VAPBenT78jBSIhuG7l3ZRy18Bt1Xx0NbsWcesvdkt3xYCyja9dhQ9ZFQSJKNv4xXfSAa5xT4yO01xVP
     //
-    .config(function(EvrythngAppProvider){
-        var evrythngOptions = {
-            apiKey: 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui',
-            facebook: true
-        };
+  .config(function(EvrythngAppProvider){
+      var projectKey = 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui';
+      var evrythngOptions = {
+          apiKey: projectKey,
+          facebook: true
+      };
+      EvrythngAppProvider.init(evrythngOptions);
+  })
 
-        EvrythngAppProvider.init(evrythngOptions);
-    })
 
+  // Configure ScanThng provider here
+  .config(function(ScanthngProvider){
+      var projectKey = 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui';
+      var scanthngOptions = {
+          scanType: 'OBJPICT',
+          apiKey: projectKey
+      };
+      ScanthngProvider.init(scanthngOptions);
+  })
 
-    // Configure ScanThng provider here
-    .config(function(ScanthngProvider){
-        var scanthngOptions = {
-            scanType: 'OBJPICT',
-            apiKey: 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui'
-        };
-
-        ScanthngProvider.init(scanthngOptions);
-    })
-    .config(function($sceProvider) {
-        // Completely disable SCE.  For demonstration purposes only!
-        // Do not use in new projects.
-        $sceProvider.enabled(false);
-    });
+  .config(function($sceProvider) {
+      // Completely disable SCE.  For demonstration purposes only!
+      // Do not use in new projects.
+      $sceProvider.enabled(false);
+  });
