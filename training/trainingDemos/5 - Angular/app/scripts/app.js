@@ -2,14 +2,14 @@
 
 /**
  * @ngdoc overview
- * @name esteeApp
+ * @name trainingApp
  * @description
- * # esteeApp
+ * # trainingApp
  *
  * Main module of the application.
  */
 angular
-  .module('esteeApp', [
+  .module('trainingApp', [
     'ngCookies',
     'ngRoute',
     'evrythng',
@@ -23,41 +23,21 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .when('/campaign/:bottleId', {
-        templateUrl: 'views/Campaign.html',
+      .when('/campaign/:productId', {
+        templateUrl: 'views/campaign.html',
         controller: 'CampaignCtrl'
       })
-      .when('/loyalty/:bottleId', {
+      .when('/loyalty/:productId', {
         templateUrl: 'views/loyalty.html',
         controller: 'LoyaltyCtrl'
       })
-      .when('/dacebook/:bottleId', {
+      .when('/facebook/:productId', {
         templateUrl: 'views/facebook.html',
         controller: 'FacebookCtrl'
       })
-      .when('/unrecognised', {
-        templateUrl: 'views/unrecognised.html',
-        controller: 'UnrecognisedCtrl'
-      })
-      .when('/unrecognised', {
-        templateUrl: 'views/unrecognised.html',
-        controller: 'UnrecognisedCtrl'
-      })
-      .when('/campaignscan', {
-        templateUrl: 'views/campaignscan.html',
-        controller: 'CampaignScanCtrl'
-      })
-      .when('/loyaltyscan', {
-        templateUrl: 'views/loyaltyscan.html',
-        controller: 'LoyaltyScanCtrl'
-      })
-      .when('/facebookscan', {
-        templateUrl: 'views/facebookscan.html',
-        controller: 'FacebookScanCtrl'
+      .when('/products', {
+        templateUrl: 'views/products.html',
+        controller: 'ProductCtrl'
       })
       .otherwise({
         redirectTo: '/'
@@ -69,7 +49,7 @@ angular
     //
     .config(function(EvrythngAppProvider){
         var evrythngOptions = {
-            apiKey: 'tzdcutX2sqUSPRdqWh91hu1rMSOL39lm3DhMhN5OIoiPYONfuu43fU7ZHfiXaRmNtOhKNPB4kqaAnNB2',
+            apiKey: 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui',
             facebook: true
         };
 
@@ -81,7 +61,7 @@ angular
     .config(function(ScanthngProvider){
         var scanthngOptions = {
             scanType: 'OBJPICT',
-            apiKey: 'tzdcutX2sqUSPRdqWh91hu1rMSOL39lm3DhMhN5OIoiPYONfuu43fU7ZHfiXaRmNtOhKNPB4kqaAnNB2'
+            apiKey: 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui'
         };
 
         ScanthngProvider.init(scanthngOptions);

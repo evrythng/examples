@@ -11,7 +11,8 @@
     "angular-route": "1.2.16",
     "bootstrap-social": "*",
     "spin.js": "~2.0.0",
-    "evrythng": "~2.0.7"
+    "evrythng": "*",
+    "scanthng": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

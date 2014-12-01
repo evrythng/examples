@@ -2,35 +2,39 @@
 
 /**
  * @ngdoc function
- * @name esteeApp.controller:MainCtrl
+ * @name trainingApp.controller:MainCtrl
  * @description
  * # MainCtrl
- * Controller of the esteeApp
+ * Controller of the trainingApp
  */
-angular.module('esteeApp')
-  .controller('MainCtrl', function ($scope, $location, Scanthng,storage) {
+angular.module('trainingApp')
+  .controller('MainCtrl', function ($scope, $location, Scanthng,storage, CampaignRedirection) {
 
-        $scope.visits = storage.get('visits');
 
-        $scope.scanBottle = function() {
-            console.log('scan');
-            Scanthng.config({redirect: true, errorCb : scanError, spinner : { auto: true }});
-            var id = Scanthng.identify();
-            console.log(id);
-        };
+    // number of times product scanned
 
-        $scope.resetVisits = function() {
-            console.log('reset visits');
-            // reset visits
-            storage.clearAll();
-            storage.set('visits','0');
-            $scope.visits = 0;
-        };
+    $scope.visits = storage.get('visits');
 
-        function scanError(error) {
-           console.log('Error',error);
-           $location.path('/unrecognised');
-           $scope.$apply();
-        }
+    $scope.scanBottle = function() {
+        Scanthng.config({redirect: false, errorCb : scanError, successCb : scanSuccess, spinner : { auto: true }});
+        Scanthng.identify();
+    };
 
+    $scope.resetVisits = function() {
+        storage.clearAll();
+        storage.set('visits','0');
+        $scope.visits = 0;
+    };
+
+    function scanError(error) {
+        // list products if you dont find them
+       $location.path('/products');
+       $scope.$apply();
+    };
+
+    function scanSuccess(data) {
+      var redirect = CampaignRedirection.getredirectionDetails(data.evrythngId);
+      $location.path(redirect.route);
+      $scope.$apply();
+    }
   });
