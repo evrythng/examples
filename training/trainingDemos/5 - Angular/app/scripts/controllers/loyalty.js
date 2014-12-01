@@ -10,5 +10,4 @@
 angular.module('trainingApp')
   .controller('LoyaltyCtrl', function ($scope, $routeParams, storage, EvrythngApp, Reward) {
       console.log('In Loyalty Controller')
-
   });
