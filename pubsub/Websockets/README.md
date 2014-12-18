@@ -1,7 +1,7 @@
 Websockets example
 ===================
 
-This is a minimalist Websocket client for interacting with Thng-PUSH. 
+This is a minimalist Websocket client for interacting with [Thng-Push](https://dashboard.evrythng.com).
 
 # Usage
 
