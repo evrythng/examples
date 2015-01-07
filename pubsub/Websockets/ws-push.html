@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<head>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+  <!-- Optional theme -->
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+
+  <script type="text/JavaScript" src="http://cdn.evrythng.net/toolkit/third-parties/mqttws31.js"></script>
+
+  <script src="http://code.highcharts.com/highcharts.js"></script>
+  <script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+  <script type="text/JavaScript">
+  $(function () {
+    var client;
+    dataArray = [];
+    function doConnect() {
+      var clientId = "test_" + new Date().getTime()
+      client = new Messaging.Client("pubsub.evrythng.com", 80, clientId);
+      console.log("Client instantiated.");
+      client.startTrace();
+      console.log("Now trying to connect...");
+      client.onMessageArrived = onMessageArrived;
+      client.connect({onSuccess:onConnect});
+    }
+    function onConnect() {
+      console.log("connection established");
+      doSubscribe();
+    }
+    function doSubscribe() {
+      client.subscribe($('#resource').val() + "?access_token=" + $('#key').val());
+    }
+    function onMessageArrived(message) {
+      console.log("onMessageArrived:"+ message.payloadString);
+      showMessage(message.payloadString);
+      dataArray.push([0, 1]);
+    }; 
+    function showMessage(message) {
+      $('#messages').append("<li class='list-group-item'>"
+        + message + "</li>");
+    } 
+    $( "#connect" ).click(function() {
+      doConnect();
+    });
+  })
+  </script>
+</head>
+<body>
+<body role="document">
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">API Key</div>
+      <div class="panel-body">
+        <input id="key" name="textinput" type="text" placeholder="API-KEY" class="input-xlarge">
+        <input id="resource" name="textinput" type="text" placeholder="RESOURCE" class="input-xlarge">
+        <button id="connect" name="singlebutton" class="btn btn-primary">Connect</button>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+   <div class="page-header">
+    <div class="panel panel-success">
+      <div class="panel-heading">Incoming messages</div>
+      <div class="panel-body">
+        <ul id="messages" class="list-group"></ul>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
