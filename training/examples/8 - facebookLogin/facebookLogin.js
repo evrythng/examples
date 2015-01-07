@@ -1,13 +1,8 @@
 /*global EVT, getUserContext, scanObj, $, EvrythngCokeWrapper  */
 /*jslint devel: true */
 // Facebook App
-  var projectKey = 'hxhcvFSh928vg7hi8QR0Jnj77PDeqEJfYTM9BNfkFW2iOMYiUuSrtCBcdVpg8DRQnqSlo3PnTvfiXuhx';
-//  var projectKey = 'EVRYTHNGPROJECTKEY';
+  var projectKey = 'FAQCEBOOKPROJECTKEY';
 // Instantiate Base EVRYTHNG Object
-
-//EVT.setup({
-//  apiUrl: 'https://api-staging.evrythng.net'
-//});
 
   var app = new EVT.App(projectKey);
 // save last scanned Product ID

@@ -9,6 +9,7 @@ var evtLastScannedProduct = '';
 
 // configure ScanThng
 var scanThng = new EVT.ScanThng(app);
+// set to true to redirect automatically
 scanThng.setup({redirect: false,type : 'objpic'});
 
 // Call Back when image detection returns an error

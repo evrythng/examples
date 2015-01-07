@@ -13,8 +13,17 @@ angular.module('trainingApp')
     $scope.visits = storage.get('visits');
 
     $scope.scanBottle = function() {
-        Scanthng.config({redirect: false, errorCb : scanError, successCb : scanSuccess, spinner : { auto: true }});
-        Scanthng.identify();
+
+        Scanthng.identify({
+              type: 'objpic',
+              redirect: false,
+              createScanAction : true,
+              createAnonymousUser : true,
+              spinner : { auto: true }}
+        ).then(
+            scanSuccess,
+            scanError
+        );
     };
 
     $scope.resetVisits = function() {
@@ -25,13 +34,10 @@ angular.module('trainingApp')
 
     function scanError(error) {
         // list products if you dont find them
-       $location.path('/products');
-       $scope.$apply();
+      console.log('Error', error);
     };
 
     function scanSuccess(data) {
-      var redirect = CampaignRedirection.getredirectionDetails(data.evrythngId);
-      $location.path(redirect.route);
-      $scope.$apply();
+      console.log('success', data);
     };
   });

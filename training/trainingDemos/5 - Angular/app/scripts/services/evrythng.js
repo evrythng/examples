@@ -1,7 +1,7 @@
 'use strict';
 /* global EVT */
 
-// Evrythng provider, wrapping Evryhng library object into an AngularJS service
+// Evrythng provider, wrapping Evrythng library object into an AngularJS service
 angular.module('evrythng', [])
   .provider('EvrythngApp', function(){
     var options;

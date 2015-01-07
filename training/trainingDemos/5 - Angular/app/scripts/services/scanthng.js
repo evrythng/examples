@@ -14,8 +14,8 @@ angular.module('scanthng', [])
       },
 
       // Provider - return Scanthng instance
-      $get: function(){
-        return new ScanThng(options);
+      $get: function(EvrythngApp){
+        return new EVT.ScanThng(EvrythngApp);
       }
     };
   });
