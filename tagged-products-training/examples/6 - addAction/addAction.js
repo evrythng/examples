@@ -1,11 +1,11 @@
 /*global EVT, getUserContext, scanObj, $, EvrythngCokeWrapper  */
 /*jslint devel: true */
 
-var projectKey = 'EVRYTHNGPROJECTKEY';
+var projectKey = 'NxDNY8T4NVkF4O2ATKLAt1lAtrNufKitoSohdqgV7jWjs4FUo3xSBGUkNsNSnC15lixixnWpjpxiz848';
 // Instantiate Base EVRYTHNG Object
 var app = new EVT.App(projectKey);
 
-var productId = "UVAdnpxbPepRQEN9gKV6AfEa";
+var productId = "Ue3RaHkVseKRwrwAqUy6yCtp";
 
 $('#productId').text = productId;
 
@@ -44,6 +44,7 @@ function createAnonymousUserAndSave() {
 function addAction() {
   // add an action to the product
   console.log($('#productId').text);
+  var productId = "Ue3RaHkVseKRwrwAqUy6yCtp";
   user.product(productId).read().then(function(product) {
     product.action('scans').create().then(function(response) {
       console.log(response);

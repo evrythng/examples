@@ -1,7 +1,7 @@
 /*global EVT, getUserContext, scanObj, $, EvrythngCokeWrapper  */
 /*jslint devel: true */
 
-var projectKey = 'EVRYTHNGPROJECTKEY';
+var projectKey = 'NxDNY8T4NVkF4O2ATKLAt1lAtrNufKitoSohdqgV7jWjs4FUo3xSBGUkNsNSnC15lixixnWpjpxiz848';
 // Instantiate Base EVRYTHNG Object
 var app = new EVT.App(projectKey);
 // save last scanned Product ID
@@ -10,7 +10,7 @@ var evtLastScannedProduct = '';
 // configure ScanThng
 var scanThng = new EVT.ScanThng(app);
 // set to true to redirect automatically
-scanThng.setup({redirect: false,type : 'objpic'});
+scanThng.setup({redirect: false, createScanAction : true, type : 'objpic'});
 
 // Call Back when image detection returns an error
 function scanError(error) {
