@@ -1,7 +1,7 @@
 /*global EVT, getUserContext, scanObj, $, EvrythngCokeWrapper  */
 /*jslint devel: true */
 
-var projectKey = 'NxDNY8T4NVkF4O2ATKLAt1lAtrNufKitoSohdqgV7jWjs4FUo3xSBGUkNsNSnC15lixixnWpjpxiz848';
+var projectKey = 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui';
 // Instantiate Base EVRYTHNG Object
 var app = new EVT.App(projectKey);
 // save last scanned Product ID

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+  <meta charset="utf-8">
+  <title>EVRYTHNG Demo</title>
+  <!--<meta name="viewport" content="width=device-width, initial-scale=1">-->
+</head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<body>
+
+<div class="container-fluid">
+  <div class="row">
+
+    <div class="col-md-4">
+      <p></p>
+      <button type="button" class="btn btn-primary center-left"  onclick="newUser('dave@evrythng.com','password123')">New User</button><p></p>
+      <button type="button" class="btn btn-primary center-left"  onclick="login('dave@evrythng.com','password123')">Login</button><p></p>
+      <button type="button" class="btn btn-primary center-left"  onclick="listDevicesRest()">Get Device Rest</button><p></p>
+      <button type="button" class="btn btn-primary center-left"  onclick="addUserToScope()">Add User to Scope</button><p></p>
+      <button type="button" class="btn btn-primary center-left"  onclick="createNewDevice()">Create Device</button><p></p>
+    </div>
+    <div class="col-md-8">
+      <p></p>
+      Results <button type="button" class="btn btn-link center-left"  onclick="clearResults()">Clear</button><span id="results"></span>
+      <br>
+      <div id="results"></div>
+    </div>
+  </div>
+</div>
+
+<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<!-- Latest compiled and minified JavaScript - Bootstrap -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+<!--EVRYTHNG.js-->
+<script src="//d10ka0m22z5ju5.cloudfront.net/toolkit/evrythng-js-sdk/evrythng-2.1.0.min.js"></script>
+<!--SCANTHNG.js-->
+<script src=" http://d10ka0m22z5ju5.cloudfront.net/toolkit/scanthng/scanthng-2.0.3.js"></script>
+<!--Example JS App-->
+<script src="mqttlibrary/mqttws31.js"></script>
+<script src="devices.js"></script>
+
+</body>
+</html>

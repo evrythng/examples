@@ -10,7 +10,7 @@ var fs = require('fs');
 
 var api = 'http://api.evrythng.com';
 var operatorKey = 'EVRYTHNGOPERATORKEY';
-var projectKey = 'EVRYTHNGPROJECTKEY';
+var projectKey = 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui';
 
 
       request(api)
