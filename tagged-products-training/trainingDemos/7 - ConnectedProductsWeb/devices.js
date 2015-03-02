@@ -95,6 +95,82 @@ function login(userid,pwd) {
   function createNewDevice() {
 
     var newDevice = {};
+    newDevice.name = 'New Device';
+    newDevice.customFields = {};
+    newDevice.customFields.zone = 'inside';
+    newDevice.customFields.zone = 'kitchen';
 
+    newDevice.properties = {};
+    newDevice.properties.numberofoutlets = 4;
+
+    newDevice.identifiers = {};
+    newDevice.identifiers.serialnumber = 'ABCDEFGHIJKL';
+
+    user.thng().create(newDevice).then(function (device) {
+      console.log('added New Device', device);
+      $(document).ready(function () {
+        $('#results').append('<h2>Device Added</h2>' + JSON.stringify(device, null, 2));
+      });
+
+    })
+
+  }
+
+  function updatePropertyOnDevice() {
+
+    var thngId = 'UVQRAhSs8epa2htestpa5e2q';
+
+    user.thng(thngId).read().then(function(thng) {
+
+      // Properties
+
+      // update single property
+      thng.property('numberofoutlets').update(2);
+
+      // update multiple properties
+      thng.property('numberofoutlets').read().then(function (statusHistory) {
+
+        console.log(statusHistory);
+
+      });
+
+    });
+
+  }
+
+  function subscribeProperty() {
+
+    console.log('property Subscribe');
+
+    var thngId = 'UVQRAhSs8epa2htestpa5e2q';
+
+    var clientId = "test_" + new Date().getTime();
+    client = new Paho.MQTT.Client("pubsub.evrythng.com", 80, clientId);
+    console.log("Client instantiated.");
+    client.startTrace();
+    console.log("Now trying to connect...");
+    client.onMessageArrived = onMessageArrived;
+    client.connect({onSuccess:onConnect});
+
+    function onConnect() {
+      console.log("connection established");
+      doSubscribe();
+    }
+
+    function doSubscribe() {
+      client.subscribe('thngs/' + thngId + '/properties?access_token=' + user.apiKey);
+    }
+
+    function onMessageArrived(message) {
+      console.log("onMessageArrived:"+ message.payloadString);
+      updateForm(message.payloadString);
+    }
+
+    function updateForm(message) {
+      console.log('new message', message);
+      $(document).ready(function () {
+        $('#results').append('<h2>New Message</h2>' + JSON.stringify(message, null, 2));
+      });
+    }
 
   }
