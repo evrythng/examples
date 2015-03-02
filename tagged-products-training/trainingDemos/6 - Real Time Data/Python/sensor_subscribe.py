@@ -46,6 +46,15 @@ def on_subscribe(mqttc, obj, mid, granted_qos):
 def on_log(mqttc, obj, level, string):
     print(string)
 
+thngid = 'UVQRAhSs8epa2htestpa5e2q'
+# use user key
+api_key = 'OiybOvA3Nq56L9nmaCHRbcxSRA8kqKzzEw7A20RB0aoUNMZcPBdrh15BUP2H9o65qCxS9j4ExAilY4xm'
+property_name = 'numberofoutlets'
+evt_host = 'pubsub.evrythng.com'
+
+topic = 'thngs/' + thngid + '/properties/' + property_name + '?access_token=' + api_key
+
+
 # If you want to use a specific client id, use
 # mqttc = mqtt.Client("client-id")
 # but note that the client id must be unique on the broker. Leaving the client
@@ -58,7 +67,7 @@ mqttc.on_subscribe = on_subscribe
 # Uncomment to enable debug messages
 #mqttc.on_log = on_log
 mqttc.connect("pubsub.evrythng.com", 1883, 60)
-mqttc.subscribe("/thngs/UVQRAhSs8epa2htestpa5e2q/properties/numberofoutlets?access_token=OiybOvA3Nq56L9nmaCHRbcxSRA8kqKzzEw7A20RB0aoUNMZcPBdrh15BUP2H9o65qCxS9j4ExAilY4xm", 0)
+mqttc.subscribe(topic, 0)
 
 
 mqttc.loop_forever()

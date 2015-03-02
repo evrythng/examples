@@ -167,10 +167,31 @@ function login(userid,pwd) {
     }
 
     function updateForm(message) {
-      console.log('new message', message);
+
       $(document).ready(function () {
         $('#results').append('<h2>New Message</h2>' + JSON.stringify(message, null, 2));
       });
     }
 
   }
+
+function addActionToDevice() {
+
+  var actionType = '_ControlPowerState';
+
+  var thngId = 'UVQRAhSs8epa2htestpa5e2q';
+
+  user.thng(thngId).read().then(function(thng){
+
+    thng.action(actionType).create({
+      customFields : {
+        outlet_number : 1,
+        state : "On"
+      }
+    });
+
+  });
+
+  console.log('Action Created');
+
+}
