@@ -6,7 +6,15 @@
   var app = new EVT.App(projectKey);
   var thngId = 'UVQRAhSs8epa2htestpa5e2q';
 
+  var restUrl = 'http://api.evrythng.com';
+
   var user;
+
+  function displayResults(message, data) {
+    $(document).ready(function () {
+      $('#results').append('<h2>' + message + '</h2><pre>' + JSON.stringify(data, null, 2) + '</pre>');
+    });
+  }
 
   function newUser(userid, pwd) {
     'use strict';
@@ -26,37 +34,58 @@
     }).then(function(appUser){
 
       // validated user and his api key
-      $(document).ready(function () {
-        $('#results').append('<h2>User</h2>' + JSON.stringify(appUser, null, 2));
-      });
+      displayResults('User', appUser);
 
     });
   }
 
-function login(userid,pwd) {
+  function login(userid,pwd) {
 
-  // Login user (with Evrythng Auth) and create user scope
-  app.login({
-    email: userid,
-    password: pwd
-  }).then(function(response){
-    user = response.user;
-    $(document).ready(function () {
-      $('#results').append('<h2>Logged In User</h2>' + JSON.stringify(user, null, 2));
+    // Login user (with Evrythng Auth) and create user scope
+    app.login({
+      email: userid,
+      password: pwd
+    }).then(function(response){
+      user = response.user;
+      displayResults('User Logged In', user);
     });
-  });
 
-}
+  }
 
-  function listDevicesRest() {
+  function listDevices() {
     'use strict';
     console.log('get devices for user', user);
 
     user.thng(thngId).read().then(function (device) {
-      $(document).ready(function () {
-        $('#results').append('<h2>Devices</h2>' + JSON.stringify(device, null, 2));
+      displayResults('Devices', device);
+    });
+  }
+
+
+  function listDevicesRest() {
+    'use strict';
+    console.log('get devices for user Rest API', user);
+
+    var xhr = new XMLHttpRequest();
+
+    $(document).ready(function() {
+      $.ajax({
+        url: restUrl + '/products',
+        type: 'GET',
+        datatype: 'json',
+        success: function(resp) {
+          displayResults('Rest Call List Products', resp);
+        },
+        error: function() { alert('Failed!'); },
+        beforeSend: setHeader
       });
     });
+
+    function setHeader(xhr) {
+      xhr.setRequestHeader('Authorization', projectKey);
+    }
+
+
   }
 
   function clearResults() {
@@ -71,21 +100,17 @@ function login(userid,pwd) {
 
     user.thng(thngId).read({params: {withScopes:true}}).then(function (device) {
       console.log('scopes', device.scopes.users);
-      $(document).ready(function () {
-        $('#results').append('<h2>Device With Scope</h2>' + JSON.stringify(device, null, 2));
-      });
-      // add this user to the scope
-
+      displayResults('Device with Scope', device);
       newThngDocument = device;
+
+      // add this user to the scope
 
       newThngDocument.scopes.users[0] = user.id;
       console.log('devices', device);
       device.update(newThngDocument, {params: {withScopes:true}}).then(function(newThng){
 
         console.log('thng updated', newThng);
-        $(document).ready(function () {
-          $('#results').append('<h2>Device Scope Updated</h2>' + JSON.stringify(newThng, null, 2));
-        });
+        displayResults('Device Scope Updated', newThng);
       });
 
     });
@@ -108,9 +133,7 @@ function login(userid,pwd) {
 
     user.thng().create(newDevice).then(function (device) {
       console.log('added New Device', device);
-      $(document).ready(function () {
-        $('#results').append('<h2>Device Added</h2>' + JSON.stringify(device, null, 2));
-      });
+      displayResults('Device Added', device);
 
     })
 
@@ -128,9 +151,10 @@ function login(userid,pwd) {
       thng.property('numberofoutlets').update(2);
 
       // update multiple properties
-      thng.property('numberofoutlets').read().then(function (statusHistory) {
+      thng.property('numberofoutlets').read().then(function (propertyHistory) {
 
-        console.log(statusHistory);
+        console.log(propertyHistory);
+        displayResults('Property Updated', propertyHistory);
 
       });
 
@@ -141,6 +165,8 @@ function login(userid,pwd) {
   function subscribeProperty() {
 
     console.log('property Subscribe');
+
+    displayResults('Subscribe to Property Change', '{}');
 
     var thngId = 'UVQRAhSs8epa2htestpa5e2q';
 
@@ -168,9 +194,7 @@ function login(userid,pwd) {
 
     function updateForm(message) {
 
-      $(document).ready(function () {
-        $('#results').append('<h2>New Message</h2>' + JSON.stringify(message, null, 2));
-      });
+      displayResults('New MQTT Message', message);
     }
 
   }
@@ -189,7 +213,7 @@ function addActionToDevice() {
         state : "On"
       }
     });
-
+    displayResults('Added Action', actionType);
   });
 
   console.log('Action Created');
