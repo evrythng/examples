@@ -1,0 +1,79 @@
+{
+  "id": "a81b6ff0-28cf-fea5-4ae5-2ac5ec871c13",
+  "name": "EVRYTHNG API",
+  "values": [
+    {
+      "key": "SERVER",
+      "value": "https://api.evrythng.com",
+      "type": "text",
+      "name": "Server",
+      "enabled": true
+    },
+    {
+      "key": "OPERATOR_API_KEY",
+      "value": "--EDIT_ME--",
+      "type": "text",
+      "name": "Operator API Key",
+      "enabled": true
+    },
+    {
+      "key": "USER_API_KEY",
+      "value": "--EDIT_ME--",
+      "type": "text",
+      "name": "User API Key",
+      "enabled": true
+    },
+    {
+      "key": "APP_API_KEY",
+      "value": "--EDIT_ME--",
+      "type": "text",
+      "name": "Application API Key",
+      "enabled": true
+    },
+    {
+      "key": "THNG_ID",
+      "value": "--EDIT_ME--",
+      "type": "text",
+      "name": "Thng Id",
+      "enabled": true
+    },
+    {
+      "key": "PROD_ID",
+      "value": "--EDIT_ME--",
+      "type": "text",
+      "name": "Product Id",
+      "enabled": true
+    },
+    {
+      "key": "PROJECT_ID",
+      "value": "--EDIT_ME--",
+      "type": "text",
+      "name": "Project Id",
+      "enabled": true
+    },
+    {
+      "key": "APP_ID",
+      "value": "--EDIT_ME--",
+      "type": "text",
+      "name": "Application Id",
+      "enabled": true
+    },
+    {
+      "key": "USER_ID",
+      "value": "--EDIT_ME--",
+      "type": "text",
+      "name": "User Id",
+      "enabled": true
+    },
+    {
+      "key": "COLL_ID",
+      "value": "--EDIT_ME--",
+      "type": "text",
+      "name": "Collection Id",
+      "enabled": true
+    }
+  ],
+  "timestamp": 1432806088765,
+  "synced": false,
+  "syncedFilename": ""
+}
