@@ -29,10 +29,8 @@ function updateProperty () {
 }
 
 
-
 // Let's close this connection cleanly
 process.on('SIGINT', function() {
-  client.publish(thngUrl+'/properties/connectedat', '[{"value": false}]');
   client.end();
   process.exit();
 });
