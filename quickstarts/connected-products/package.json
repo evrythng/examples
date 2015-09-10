@@ -1,0 +1,16 @@
+{
+  "name": "connected-product-example",
+  "description": "A simple node.js app to connect an embedded device to the EVRYTHNG platform",
+  "version": "0.0.1",
+  "main": "main.js",
+    "license": "Apache-2.0",
+  "engines": {
+    "node": ">=0.10.0"
+  },
+ "dependencies": {
+    "evrythng-extended": "^3.2.0",
+    "evrythng-mqtt": "^1.0.4",
+    "mraa": "latest",
+    "jsupm_grove": "latest"
+  }
+}
