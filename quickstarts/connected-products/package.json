@@ -1,5 +1,5 @@
 {
-  "name": "connected-product-example",
+  "name": "connected-product",
   "description": "A simple node.js app to connect an embedded device to the EVRYTHNG platform",
   "version": "0.0.1",
   "main": "main.js",
