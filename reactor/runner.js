@@ -44,9 +44,14 @@ var logger = {
     error: getLogger('error')
 };
 
+function done() {
+  logger.debug('Reporting logs to EVRYTHNG...');
+  logger.debug('Script finished!');
+}
+
 global.EVT = EVT;
 global.app = new EVT.Operator(apiKey);
-global.done = function() {};
+global.done = done;
 global.logger = logger;
 
 try {
