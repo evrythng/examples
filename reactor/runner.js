@@ -3,6 +3,7 @@ var apiKey = 'INSERT YOUR OPERATOR API KEY HERE';
 
 // UNCOMMENT ONE PARTICULAR EVENT FUNCTION YOU ARE USING
 // AND FILL IT USING THE TEMPLATES
+// SEE FOR DETAILS https://dashboard.evrythng.com/documentation/extended-api/reactor#debugging-local
 var event =
 // {
 //     function: 'onActionCreated',
