@@ -23,15 +23,13 @@ build/Release
 # Dependency directory
 # Commenting this out is preferred by some people, see
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git-
-node_modules
+**/node_modules
+**/bower_modules
 
 # Users Environment Variables
 .lock-wscript
 # webstprm
 
-## Per https://intellij-support.jetbrains.com/hc/en-us/articles/206827587-How-to-manage-projects-under-Version-Control-Systems
-## recommendation is to share "All the files under .idea directory in the project root except the workspace.xml and
-## tasks.xml files which store user specific settings
-**/.idea/workspace.xml
-**/.idea/tasks.xml
+# This is a public repository so no IDE configs
+**/.idea/
 
