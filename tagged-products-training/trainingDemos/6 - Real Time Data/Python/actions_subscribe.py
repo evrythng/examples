@@ -48,7 +48,7 @@ def on_log(mqttc, obj, level, string):
 
 thngid = 'UVQRAhSs8epa2htestpa5e2q'
 # use user key
-api_key = 'OiybOvA3Nq56L9nmaCHRbcxSRA8kqKzzEw7A20RB0aoUNMZcPBdrh15BUP2H9o65qCxS9j4ExAilY4xm'
+api_key = ''
 property_name = 'numberofoutlets'
 action_type = '_ControlPowerState'
 evt_host = 'pubsub.evrythng.com'
