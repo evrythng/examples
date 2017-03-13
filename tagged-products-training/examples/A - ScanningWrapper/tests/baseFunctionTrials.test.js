@@ -1,7 +1,7 @@
 /**
  * Created by dibster on 20/11/14.
  */
-var operatorKey = 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui';
+var operatorKey = '';
 
 var app = new EVT.App(operatorKey);
 var helper = new EVTHelper();

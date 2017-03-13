@@ -6,7 +6,7 @@ var thngUrl='/thngs/'+thngId
 // This is using the unsecure version - for simplicity's sake - obviously, don't use it in production
 var client = mqtt.connect("mqtt://mqtt.evrythng.com:1883", {
   username: 'authorization',
-  password: 'kjNzrcvYNFbCgL9KVuWf0vX9VneBWOuriQlUOI7mGXd50Ww6IOeh45vQwXxiCbg5nFvTGzxpHZph7AUO' //Your device API KEY
+  password: '' //Your device API KEY
 });
 
 client.on('connect', function () { // Called once when connected
