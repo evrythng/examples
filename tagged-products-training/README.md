@@ -2,7 +2,7 @@
 
 All Keys need to be updated when running samples against your EVRYTHNG instance.
 ```javascript
-var projectKey = 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui';
+var projectKey = '';
 ```
 
 ## curl 

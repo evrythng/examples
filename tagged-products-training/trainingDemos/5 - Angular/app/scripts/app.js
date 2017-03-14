@@ -47,7 +47,7 @@ angular
     // facebook app id
     //
   .config(function(EvrythngAppProvider){
-      var projectKey = 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui';
+      var projectKey = '';
       var evrythngOptions = {
           apiKey: projectKey,
           facebook: false
@@ -58,7 +58,7 @@ angular
 
   // Configure ScanThng provider here
   .config(function(ScanthngProvider){
-      var projectKey = 'ucGgQiSMTYa6rl0VjJzBPCcCfK6xRwa4uiMTCxH8C4JUetqnjbscuxi9YPDLQKmASp5uR1jQo0Sbauui';
+      var projectKey = '';
       var scanthngOptions = {
           scanType: 'OBJPICT',
           apiKey: projectKey
