@@ -53,7 +53,7 @@ sendTemperature();
 
 
 
-  //Sleep for 15 minutes
+  //Sleep for 20 minutes
   LowPower.sleep(20 * 60 * 1000);
 }
 
