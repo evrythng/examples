@@ -2,22 +2,28 @@
 	{
 		"customFields": {
 			"displayname": "Inbound",
-			"icon": "glyphicon-user"
+			"icon": "glyphicon-transfer"
 		},
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Inbound Movement",
 		"name": "_Inbound"
 	},
 	{
 		"customFields": {
 			"displayname": "Raw Material Consumption",
-			"icon": "glyphicon-user"
+			"icon": "glyphicon-transfer"
 		},
-		"name": "_Consumed"
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Raw Material Consumed",
+		"name": "_RawMaterialConsumed"
 	},
 	{
 		"customFields": {
 			"displayname": "Outbound",
-			"icon": "glyphicon-user"
+			"icon": "glyphicon-transfer"
 		},
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Outbound Movement",
 		"updatedAt": 1484731898699,
 		"name": "_Outbound"
 	},
@@ -28,6 +34,8 @@
 			"displayname": "Item Disposed of",
 			"icon": "glyphicon-trash"
 		},
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Item Displosed / Destroyed",
 		"updatedAt": 1484731453891,
 		"name": "_Disposed"
 	},
@@ -39,6 +47,8 @@
 			"displayname": "Out of Market",
 			"icon": "glyphicon-globe"
 		},
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Item Scanned out of Market / Region",
 		"updatedAt": 1484045673923,
 		"name": "_OutOfMarket"
 	},
@@ -47,11 +57,11 @@
 		"createdAt": 1483954774130,
 		"customFields": {
 			"alerttype": "alert",
-			"description": "Recall Product Scanned",
 			"displayname": "Product Recall",
 			"icon": "glyphicon-hand-left"
 		},
-		"tags": ["NRF"],
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Recalled Product was Scanned",
 		"updatedAt": 1483954822656,
 		"name": "_Recall"
 	},
@@ -60,71 +70,24 @@
 		"createdAt": 1483954774129,
 		"customFields": {
 			"alerttype": "warning",
-			"description": "Expired Product Scanned",
 			"displayname": "Expired Product Scanned",
 			"icon": "glyphicon-remove"
 		},
-		"tags": ["NRF"],
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Expired Product Scanned",
+
 		"updatedAt": 1483954875797,
 		"name": "_Expired"
-	},
-	{
-		"id": "UkYACnWgpgREfGUcxWH8DBdt",
-		"createdAt": 1483954774129,
-		"customFields": {
-			"description": "Customer Scanned for Loyalty",
-			"displayname": "Loyalty Scan",
-			"icon": "glyphicon-thumbs-up"
-		},
-		"tags": ["NRF"],
-		"updatedAt": 1483954915973,
-		"name": "_Loyalty"
-	},
-	{
-		"id": "U2EACHCDAhMqTrxhHQ5WnpFb",
-		"createdAt": 1483954774126,
-		"customFields": {
-			"description": "Offer Given",
-			"displayname": "Offer Given",
-			"icon": "glyphicon-gift"
-		},
-		"tags": ["NRF"],
-		"updatedAt": 1483954956508,
-		"name": "_Offer"
-	},
-	{
-		"id": "UkEUCHCXpDRhfmAcSCHPXBdq",
-		"createdAt": 1483954774125,
-		"customFields": {
-			"description": "Offer Given",
-			"displayname": "Offer Redeemed",
-			"icon": "glyphicon-check"
-		},
-		"tags": ["NRF"],
-		"updatedAt": 1483954978556,
-		"name": "_OfferTaken"
-	},
-	{
-		"id": "UkYdW4CXBUpHBsTKYbBE4Mmn",
-		"createdAt": 1483954774120,
-		"customFields": {
-			"description": "A Registered Customer",
-			"displayname": "Customer Registration",
-			"icon": "glyphicon-user"
-		},
-		"tags": ["NRF"],
-		"updatedAt": 1483955010034,
-		"name": "_Registration"
 	},
 	{
 		"id": "UkYAWnWDed54BPypYxeYnq3h",
 		"createdAt": 1483954774118,
 		"customFields": {
-			"description": "Product in Correct Market",
 			"displayname": "In Market Product",
 			"icon": "glyphicon-saved"
 		},
-		"tags": ["NRF"],
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Product Scanned in Intended Market",
 		"updatedAt": 1484045592992,
 		"name": "_InMarket"
 	}
