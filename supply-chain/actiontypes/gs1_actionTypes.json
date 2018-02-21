@@ -1,0 +1,161 @@
+[{
+    "name": "_Active",
+    "customFields": {
+        "displayname": "Active",
+        "icon": "glyphicon-arrow-right",
+        "description": "A commissioned object has just been introduced into the supply chain."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Container_Closed",
+    "customFields": {
+        "displayname": "Container_Closed",
+        "icon": "glyphicon-arrow-down",
+        "description": "Object has been loaded onto a container"
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Destroyed",
+    "customFields": {
+        "displayname": "Destroyed",
+        "icon": "glyphicon-trash",
+        "description": "Object has been fully rendered non-usable."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Encoded",
+    "customFields": {
+        "displayname": "Encoded",
+        "icon": "glyphicon-barcode",
+        "description": "An instance-level identifier has been written to a bar code or RFID tag"
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Inactive",
+    "customFields": {
+        "displayname": "Inactive",
+        "icon": "glyphicon-ban-circle",
+        "description": "Decommissioned object that may be reintroduced to the supply chain."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_In_Progress",
+    "customFields": {
+        "displayname": "In_Progress",
+        "icon": "glyphicon-cog",
+        "description": "Default disposition for object proceeding through points in the supply chain."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_In_Transit",
+    "customFields": {
+        "displayname": "In_Transit",
+        "icon": "glyphicon-send",
+        "description": "Object being shipped between two trading partners."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Expired",
+    "customFields": {
+        "displayname": "Expired",
+        "icon": "glyphicon-remove-circle",
+        "description": "Object is past expiration date."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Damaged",
+    "customFields": {
+        "displayname": "Damaged",
+        "icon": "glyphicon-exclamation-sign",
+        "description": "Object is impaired in its usefulness and/or reduced in value due to a defect."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Disposed",
+    "customFields": {
+        "displayname": "Disposed",
+        "icon": "glyphicon-trash",
+        "description": "Object has been returned for disposal."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_No_Pedigree_Match",
+    "customFields": {
+        "displayname": "No_Pedigree_Match",
+        "icon": "glyphicon-exclamation-sign",
+        "description": "In validating the pedigree for the object"
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Non_Sellable_Other",
+    "customFields": {
+        "displayname": "Non_Sellable_Other",
+        "icon": "glyphicon-ban-circle",
+        "description": "Object cannot be sold to a customer."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Recalled",
+    "customFields": {
+        "displayname": "Recalled",
+        "icon": "glyphicon-remove",
+        "description": "Object is non-sellable because of public safety reasons."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Reserved",
+    "customFields": {
+        "displayname": "Reserved",
+        "icon": "glyphicon-list",
+        "description": "Instance-level identifier has been allocated for a third party."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Returned",
+    "customFields": {
+        "displayname": "Returned",
+        "icon": "glyphicon-arrow-left",
+        "description": "Object has been sent back for various reasons. It may or may not be sellable."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Sellable_Accessible",
+    "customFields": {
+        "displayname": "Sellable_Accessible",
+        "icon": "glyphicon-ok",
+        "description": "Product can be sold as is and customer can access product for purchase."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Sellable_Not_Accessible",
+    "customFields": {
+        "displayname": "Sellable_Not_Accessible",
+        "icon": "glyphicon-remove",
+        "description": "Product can be sold as is"
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Retail_Sold",
+    "customFields": {
+        "displayname": "Retail_Sold",
+        "icon": "glyphicon-shopping-cart",
+        "description": "Product has been purchased by a customer."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Stolen",
+    "customFields": {
+        "displayname": "Stolen",
+        "icon": "glyphicon-fire",
+        "description": "An object has been taken without permission or right."
+    },
+    "tags": ["GS1"]
+}, {
+    "name": "_Unknown",
+    "customFields": {
+        "displayname": "Unknown",
+        "icon": "glyphicon-question-sign",
+        "description": "An object’s condition is not known."
+    },
+    "tags": ["GS1"]
+}]

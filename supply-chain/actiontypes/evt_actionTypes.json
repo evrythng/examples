@@ -1,0 +1,131 @@
+[
+	{
+		"customFields": {
+			"displayname": "Inbound",
+			"icon": "glyphicon-user"
+		},
+		"name": "_Inbound"
+	},
+	{
+		"customFields": {
+			"displayname": "Raw Material Consumption",
+			"icon": "glyphicon-user"
+		},
+		"name": "_Consumed"
+	},
+	{
+		"customFields": {
+			"displayname": "Outbound",
+			"icon": "glyphicon-user"
+		},
+		"updatedAt": 1484731898699,
+		"name": "_Outbound"
+	},
+	{
+		"id": "UFY9AedrqG8hE6aRahFnPQnh",
+		"createdAt": 1484731453891,
+		"customFields": {
+			"displayname": "Item Disposed of",
+			"icon": "glyphicon-trash"
+		},
+		"updatedAt": 1484731453891,
+		"name": "_Disposed"
+	},
+	{
+		"id": "UFYBp7DaeUKHVPyKYxTWDbHn",
+		"createdAt": 1484045664390,
+		"customFields": {
+			"alerttype": "alert",
+			"displayname": "Out of Market",
+			"icon": "glyphicon-globe"
+		},
+		"updatedAt": 1484045673923,
+		"name": "_OutOfMarket"
+	},
+	{
+		"id": "U2hUf4fDpDwEf3dcxfHPgeea",
+		"createdAt": 1483954774130,
+		"customFields": {
+			"alerttype": "alert",
+			"description": "Recall Product Scanned",
+			"displayname": "Product Recall",
+			"icon": "glyphicon-hand-left"
+		},
+		"tags": ["NRF"],
+		"updatedAt": 1483954822656,
+		"name": "_Recall"
+	},
+	{
+		"id": "UFhAfHWXAEMqTrSh4QpC4pFd",
+		"createdAt": 1483954774129,
+		"customFields": {
+			"alerttype": "warning",
+			"description": "Expired Product Scanned",
+			"displayname": "Expired Product Scanned",
+			"icon": "glyphicon-remove"
+		},
+		"tags": ["NRF"],
+		"updatedAt": 1483954875797,
+		"name": "_Expired"
+	},
+	{
+		"id": "UkYACnWgpgREfGUcxWH8DBdt",
+		"createdAt": 1483954774129,
+		"customFields": {
+			"description": "Customer Scanned for Loyalty",
+			"displayname": "Loyalty Scan",
+			"icon": "glyphicon-thumbs-up"
+		},
+		"tags": ["NRF"],
+		"updatedAt": 1483954915973,
+		"name": "_Loyalty"
+	},
+	{
+		"id": "U2EACHCDAhMqTrxhHQ5WnpFb",
+		"createdAt": 1483954774126,
+		"customFields": {
+			"description": "Offer Given",
+			"displayname": "Offer Given",
+			"icon": "glyphicon-gift"
+		},
+		"tags": ["NRF"],
+		"updatedAt": 1483954956508,
+		"name": "_Offer"
+	},
+	{
+		"id": "UkEUCHCXpDRhfmAcSCHPXBdq",
+		"createdAt": 1483954774125,
+		"customFields": {
+			"description": "Offer Given",
+			"displayname": "Offer Redeemed",
+			"icon": "glyphicon-check"
+		},
+		"tags": ["NRF"],
+		"updatedAt": 1483954978556,
+		"name": "_OfferTaken"
+	},
+	{
+		"id": "UkYdW4CXBUpHBsTKYbBE4Mmn",
+		"createdAt": 1483954774120,
+		"customFields": {
+			"description": "A Registered Customer",
+			"displayname": "Customer Registration",
+			"icon": "glyphicon-user"
+		},
+		"tags": ["NRF"],
+		"updatedAt": 1483955010034,
+		"name": "_Registration"
+	},
+	{
+		"id": "UkYAWnWDed54BPypYxeYnq3h",
+		"createdAt": 1483954774118,
+		"customFields": {
+			"description": "Product in Correct Market",
+			"displayname": "In Market Product",
+			"icon": "glyphicon-saved"
+		},
+		"tags": ["NRF"],
+		"updatedAt": 1484045592992,
+		"name": "_InMarket"
+	}
+]
