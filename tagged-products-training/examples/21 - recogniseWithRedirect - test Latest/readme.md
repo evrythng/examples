@@ -1,1 +1,0 @@
-uses newest versions of evrythng and scanthng to run redirector rules on scan
