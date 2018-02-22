@@ -1,0 +1,1634 @@
+{
+	"info": {
+		"name": "Supply Chain Sample",
+		"_postman_id": "659cb1fe-ed60-0df3-4b8c-11d9e65a1e3a",
+		"description": "Collection to create a sample project for supply chain",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1 - Create Project",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Save sample application id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_PROJECT_ID\", jsonData.id);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"name\" : \"Supply Chain Example\"\n}"
+				},
+				"url": {
+					"raw": "{{SERVER}}/projects",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"projects"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "2 - Create an Application",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Save sample application id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_APP_ID\", jsonData.id);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"name\" : \"Scanning App\",\n  \"socialNetworks\": {} \n}"
+				},
+				"url": {
+					"raw": "{{SERVER}}/projects/{{SAMPLE_PROJECT_ID}}/applications",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"projects",
+						"{{SAMPLE_PROJECT_ID}}",
+						"applications"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "3a - Place Customer",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+							"    console.log(response.json());",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Add Key\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_PLACE_ID_CUSTOMER\", jsonData.id);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": \"U4FpSecdMmshEMwaaYGphQhm\",\n        \"createdAt\": 1519064099023,\n        \"customFields\": {},\n        \"tags\": [],\n        \"updatedAt\": 1519064099023,\n        \"name\": \"Customer\",\n        \"address\": {\n            \"street\": \"319 Watford Road\",\n            \"postalCode\": \"AL23DA\",\n            \"city\": \"St Albans\",\n            \"country\": \"United Kingdom\"\n        },\n        \"identifiers\": {}\n    }"
+				},
+				"url": {
+					"raw": "{{SERVER}}/places",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"places"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "3b - Place Distribution Centre",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+							"    console.log(response.json());",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Add Key\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_PLACE_ID_DISTRIBUTION_CENTRE\", jsonData.id);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": \"Un2KSdteVg8aQKwawDBBGEkd\",\n        \"createdAt\": 1519064052780,\n        \"customFields\": {},\n        \"tags\": [\n            \"Distribution Centre\"\n        ],\n        \"updatedAt\": 1519064052780,\n        \"name\": \"Distribution Centre\",\n        \"description\": \"European Distribution Centre\",\n        \"position\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                0.15380859375,\n                49.396675075193976\n            ]\n        },\n        \"address\": {},\n        \"identifiers\": {},\n        \"longitude\": 0.15380859375,\n        \"latitude\": 49.396675075193976\n    }"
+				},
+				"url": {
+					"raw": "{{SERVER}}/places",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"places"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "3c - Place Plant",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+							"    console.log(response.json());",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Add Key\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_PLACE_ID_PLANT\", jsonData.id);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": \"UH2HGA4N6GPEEMaRaEm5ecHe\",\n        \"createdAt\": 1519031213657,\n        \"customFields\": {},\n        \"tags\": [\n            \"Plant\"\n        ],\n        \"updatedAt\": 1519032388613,\n        \"name\": \"Plant\",\n        \"description\": \"Production Facility\",\n        \"position\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                -0.5197906494140625,\n                44.762336674810996\n            ]\n        },\n        \"address\": {},\n        \"identifiers\": {\n            \"GLN\": \"8900257099203\"\n        },\n        \"longitude\": -0.5197906494140625,\n        \"latitude\": 44.762336674810996\n    }"
+				},
+				"url": {
+					"raw": "{{SERVER}}/places",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"places"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "3d - Place Supplier",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.sendRequest(\"https://postman-echo.com/get\", function (err, response) {",
+							"    console.log(response.json());",
+							"});"
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Add Key\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_PLACE_ID_SUPPLIER\", jsonData.id);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n        \"id\": \"UHkg8PeeqG8hY6aaRhmddkqq\",\n        \"createdAt\": 1518792260518,\n        \"customFields\": {},\n        \"tags\": [\n            \"Supplier\",\n            \"Glass\"\n        ],\n        \"updatedAt\": 1518792260518,\n        \"name\": \"Glass Manufacturer\",\n        \"description\": \"Supplier\",\n        \"position\": {\n            \"type\": \"Point\",\n            \"coordinates\": [\n                3.6625671386718746,\n                47.15984001304432\n            ]\n        },\n        \"address\": {},\n        \"identifiers\": {\n            \"suppliernumber\": \"SUPGLA33445\"\n        },\n        \"longitude\": 3.6625671386718746,\n        \"latitude\": 47.15984001304432\n    }"
+				},
+				"url": {
+					"raw": "{{SERVER}}/places",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"places"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4a - Outbound Action Type",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"customFields\": {\n            \"displayname\": \"Outbound\",\n            \"icon\": \"glyphicon-arrow-right\"\n        },\n        \"name\": \"_Outbound\",\n        \"description\": \"Outbound Movement\"\n    }"
+				},
+				"url": {
+					"raw": "{{SERVER}}/actions?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"actions"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4b - Raw Material Action Type",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n        \"customFields\": {\n            \"displayname\": \"Raw Material Consumed\",\n            \"icon\": \"glyphicon-cog\"\n        },\n        \"name\": \"_RawMaterialConsumed\",\n        \"description\": \"When Raw material is consumed as part of a production batch / lot\"\n    }"
+				},
+				"url": {
+					"raw": "{{SERVER}}/actions?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"actions"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "4c - Inbound Action Type",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "   {\n\n        \"customFields\": {\n            \"displayname\": \"Inbound\",\n            \"icon\": \"glyphicon-arrow-right\"\n        },\n        \"name\": \"_Inbound\",\n        \"description\": \"Inbound to Place , from Suppliers, or as part of the finished product supply chain\"\n    }"
+				},
+				"url": {
+					"raw": "{{SERVER}}/actions?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"actions"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "5 - Raw Material Product",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Save Pallet Id now\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_GLASS_PRODUCT_ID\", jsonData.id);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": \"UnkDPMk3eg8aQpawREPHnCfs\",\n        \"createdAt\": 1518791817167,\n        \"customFields\": {\n            \"qtyperpallet\": \"960\"\n        },\n        \"tags\": [\n            \"Raw Material\"\n        ],\n        \"updatedAt\": 1519124648442,\n        \"brand\": \"Glass Suppliers Ltd\",\n        \"properties\": {},\n        \"description\": \"75 cl empty bottles\",\n        \"fn\": \"Glass\",\n        \"name\": \"Glass\",\n        \"photos\": [\n            \"https://content.screencast.com/users/Dashenhurst/folders/Jing/media/5607a5c2-6e40-42b4-8dd7-0e92762e2926/00002368.png\"\n        ],\n        \"identifiers\": {\n            \"EAN\": \"82746598390275638\"\n        }\n    }"
+				},
+				"url": {
+					"raw": "{{SERVER}}/products?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "6 - Pallet of Glass (Raw Material)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Save Pallet Id now\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_GLASS_THNG_ID\", jsonData.id);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": \"UH2D8NdcVgPRtKwawEPnnfkb\",\n        \"createdAt\": 1518791986433,\n        \"customFields\": {},\n        \"tags\": [\n            \"Pallet\",\n            \"Raw Material\"\n        ],\n        \"updatedAt\": 1519033672343,\n        \"name\": \"Pallet / 6702149790414044\",\n        \"description\": \"Pallet of Glassware\",\n        \"product\": \"{{SAMPLE_GLASS_PRODUCT_ID}}\",\n        \"properties\": {},\n        \"identifiers\": {\n            \"SSCC\": \"6702149790414044\"\n        }\n    }"
+				},
+				"url": {
+					"raw": "{{SERVER}}/thngs?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"thngs"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "7a - Raw Materials Batch",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Save Collection Id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_GLASS_COLLECTION_ID\", jsonData.id);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": \"Un2gs7rXqmPEY6wawE2DFKft\",\n    \"createdAt\": 1518792150715,\n    \"customFields\": {\n        \"quantity\": \"1\",\n        \"unit\": \"pallet\"\n    },\n    \"tags\": [\n        \"Raw Material\",\n        \"Glass\"\n    ],\n    \"updatedAt\": 1519030467415,\n    \"name\": \"Glass - AB/123456\",\n    \"description\": \"Order of Glass from Supplier\",\n    \"identifiers\": {\n        \"OrderNumber\": \"AB/123456\"\n    }\n}"
+				},
+				"url": {
+					"raw": "{{SERVER}}/collections?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"collections"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "7b -  Add Raw Material to Collection",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\"{{SAMPLE_GLASS_THNG_ID}}\"]"
+				},
+				"url": {
+					"raw": "{{SERVER}}/collections/{{SAMPLE_GLASS_COLLECTION_ID}}/thngs?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"collections",
+						"{{SAMPLE_GLASS_COLLECTION_ID}}",
+						"thngs"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "8 - Add Inbound to Factory",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"type\" : \"_Inbound\",\n\t\"location\" :  {\n\t\t\"place\" : \"{{SAMPLE_PLACE_ID_PLANT}}\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "{{SERVER}}/thngs/{{SAMPLE_GLASS_THNG_ID}}/actions/_Inbound?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"thngs",
+						"{{SAMPLE_GLASS_THNG_ID}}",
+						"actions",
+						"_Inbound"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "9 - Raw Material Consumption",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"type\" : \"_RawMaterialConsumed\",\n\t\"location\" :  {\n\t\t\"place\" : \"{{SAMPLE_PLACE_ID_PLANT}}\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "{{SERVER}}/thngs/{{SAMPLE_GLASS_THNG_ID}}/actions/_RawMaterialConsumed?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"thngs",
+						"{{SAMPLE_GLASS_THNG_ID}}",
+						"actions",
+						"_RawMaterialConsumed"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "10 - Production Batch",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Save Collection Id\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_PRODUCTION_BATCH_ID\", jsonData.id);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": \"UnkHmXkbeD8a9KwRaXeVfpFc\",\n        \"createdAt\": 1519031937692,\n        \"customFields\": {\n            \"GLN\": \"8900257099203\",\n            \"ean\": \"3754505730900\",\n            \"finished_at\": 1430408700000,\n            \"produced_unit\": \"bottle\",\n            \"production_line\": \"GR14\",\n            \"quantity_produced\": 17916,\n            \"started_at\": 1430389200000\n        },\n        \"tags\": [\n            \"2015-04-30\",\n            \"Finished Product\",\n            \"3754505730900\"\n        ],\n        \"updatedAt\": 1519124769891,\n        \"name\": \"512007\",\n        \"description\": \"Production Batch , 512007\",\n        \"identifiers\": {\n            \"batchid\": \"512007\"\n        }\n    }"
+				},
+				"url": {
+					"raw": "{{SERVER}}/collections?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"collections"
+					],
+					"query": [
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						},
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "12  Add Raw Material to Finished Product Batch Collection",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\"{{SAMPLE_GLASS_THNG_ID}}\"]"
+				},
+				"url": {
+					"raw": "{{SERVER}}/collections/{{SAMPLE_PRODUCTION_BATCH_ID}}/thngs?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"collections",
+						"{{SAMPLE_PRODUCTION_BATCH_ID}}",
+						"thngs"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "13 - Finished Product SKU",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Save Pallet Id now\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_FINISHED_PRODUCT_ID\", jsonData.id);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": \"UnFn3hUn6msEh6aRaF54Atfb\",\n        \"createdAt\": 1519032122254,\n        \"customFields\": {},\n        \"tags\": [\n            \"Finished Product\",\n            \"Wine\"\n        ],\n        \"updatedAt\": 1519124551551,\n        \"properties\": {},\n        \"description\": \"Finished Product, Red Wine\",\n        \"fn\": \"Red Wine\",\n        \"name\": \"Red Wine\",\n        \"photos\": [\n            \"https://content.screencast.com/users/Dashenhurst/folders/Jing/media/df39407e-2a1d-4263-a80d-91b78a66b6e5/00002366.png\"\n        ],\n        \"identifiers\": {\n            \"EAN\": \"3754505730900\"\n        }\n    }"
+				},
+				"url": {
+					"raw": "{{SERVER}}/products?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"products"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "14a - Pallet of Finished Products",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"pm.test(\"Save Pallet Id now\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_FINISHED_PRODUCT_PALLET_ID\", jsonData.id);",
+							"});",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": \"U4knnhHTBXswtpaRaXeBDd2k\",\n        \"createdAt\": 1519036322552,\n        \"customFields\": {\n            \"batch\": \"512007\",\n            \"ean\": \"3754505730900\"\n        },\n        \"tags\": [\n            \"Finished Product\",\n            \"Pallet\"\n        ],\n        \"updatedAt\": 1519053452354,\n        \"name\": \"Pallet / 006141411234567890\",\n        \"description\": \"Pallet of Finished Product\",\n        \"product\": \"{{SAMPLE_FINISHED_PRODUCT_ID}}\",\n        \"properties\": {},\n        \"identifiers\": {\n            \"SSCC\": \"00006141411234567890\",\n            \"code_11\": \"0123-4567\",\n            \"code_128\": \"00006141411234567890\"\n        }\n    }"
+				},
+				"url": {
+					"raw": "{{SERVER}}/thngs?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"thngs"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "14b - Case 1",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Save Case Id now\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_FINISHED_PRODUCT_CASE_ID1\", jsonData.id);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": \"UHkHPHTMeXsRtpRRwDVB2bFf\",\n        \"createdAt\": 1519053356913,\n        \"customFields\": {},\n        \"tags\": [\n            \"Finished Product\",\n            \"Case\"\n        ],\n        \"updatedAt\": 1519124801880,\n        \"name\": \"Case / 1500980800021\",\n        \"product\": \"{{SAMPLE_FINISHED_PRODUCT_ID}}\",\n        \"properties\": {},\n        \"identifiers\": {\n            \"code_128\": \"01050104949192641063974211500980800021\"\n        }\n        }\n    "
+				},
+				"url": {
+					"raw": "{{SERVER}}/thngs?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"thngs"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "14b - Case 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Save Case Id now\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_FINISHED_PRODUCT_CASE_ID2\", jsonData.id);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": \"UHkHPHTMeXsRtpRRwDVB2bFf\",\n        \"createdAt\": 1519053356913,\n        \"customFields\": {},\n        \"tags\": [\n            \"Finished Product\",\n            \"Case\"\n        ],\n        \"updatedAt\": 1519124801880,\n        \"name\": \"Case / 1500980800024\",\n        \"product\": \"{{SAMPLE_FINISHED_PRODUCT_ID}}\",\n        \"properties\": {},\n        \"identifiers\": {\n            \"code_128\": \"01050104949192641063974211500980800024\"\n        }\n        }\n    "
+				},
+				"url": {
+					"raw": "{{SERVER}}/thngs?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"thngs"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "14b - Case 3",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Save Case Id now\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_FINISHED_PRODUCT_CASE_ID3\", jsonData.id);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": \"UHkHPHTMeXsRtpRRwDVB2bFf\",\n        \"createdAt\": 1519053356913,\n        \"customFields\": {},\n        \"tags\": [\n            \"Finished Product\",\n            \"Case\"\n        ],\n        \"updatedAt\": 1519124801880,\n        \"name\": \"Case / 1500980800023\",\n        \"product\": \"{{SAMPLE_FINISHED_PRODUCT_ID}}\",\n        \"properties\": {},\n        \"identifiers\": {\n            \"code_128\": \"01050104949192641063974211500980800021\"\n        }\n        }\n    "
+				},
+				"url": {
+					"raw": "{{SERVER}}/thngs?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"thngs"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "14b - Case 4",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Save Case Id now\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_FINISHED_PRODUCT_CASE_ID4\", jsonData.id);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "    {\n        \"id\": \"UHkHPHTMeXsRtpRRwDVB2bFf\",\n        \"createdAt\": 1519053356913,\n        \"customFields\": {},\n        \"tags\": [\n            \"Finished Product\",\n            \"Case\"\n        ],\n        \"updatedAt\": 1519124801880,\n        \"name\": \"Case / 1500980800023\",\n        \"product\": \"{{SAMPLE_FINISHED_PRODUCT_ID}}\",\n        \"properties\": {},\n        \"identifiers\": {\n            \"code_128\": \"01050104949192641063974211500980800021\"\n        }\n        }\n    "
+				},
+				"url": {
+					"raw": "{{SERVER}}/thngs?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"thngs"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "14c - Bottle",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"pm.test(\"Save Case Id now\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.environment.set(\"SAMPLE_FINISHED_PRODUCT_BOTTLE_ID\", jsonData.id);",
+							"});"
+						]
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "\t{\n\t\t\"id\": \"U4knsbxGVg8atKRRwXBBErfk\",\n\t\t\"createdAt\": 1519051033839,\n\t\t\"customFields\": {\n\t\t\t\"case\": \"{{SAMPLE_FINISHED_PRODUCT_PALLET_ID}}\",\n\t\t\t\"pallet\": \"{{SAMPLE_FINISHED_PRODUCT_CASE_ID4}}\"\n\t\t},\n\t\t\"tags\": [\"Finished Product\", \"Bottle\"],\n\t\t\"updatedAt\": 1519124801880,\n\t\t\"name\": \"Bottle / 5120070000001\",\n\t\t\"product\": \"{{SAMPLE_FINISHED_PRODUCT_ID}}\",\n\t\t\"properties\": {},\n\t\t\"identifiers\": {}\n\t}"
+				},
+				"url": {
+					"raw": "{{SERVER}}/thngs?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"thngs"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "15  Associate Finished Products to Batch",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "[\n\t\"{{SAMPLE_FINISHED_PRODUCT_PALLET_ID}}\",\n\t\"{{SAMPLE_FINISHED_PRODUCT_CASE_ID1}}\",\n\t\"{{SAMPLE_FINISHED_PRODUCT_CASE_ID2}}\",\n\t\"{{SAMPLE_FINISHED_PRODUCT_CASE_ID3}}\",\n\t\"{{SAMPLE_FINISHED_PRODUCT_CASE_ID4}}\",\n\t\"{{SAMPLE_FINISHED_PRODUCT_BOTTLE_ID}}\"\n\t]"
+				},
+				"url": {
+					"raw": "{{SERVER}}/collections/{{SAMPLE_PRODUCTION_BATCH_ID}}/thngs?project={{SAMPLE_PROJECT_ID}}",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"collections",
+						"{{SAMPLE_PRODUCTION_BATCH_ID}}",
+						"thngs"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						},
+						{
+							"key": "project",
+							"value": "{{SAMPLE_PROJECT_ID}}",
+							"equals": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "16a - From Plant to Distribution Centre",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"type\" : \"_Outbound\",\n\t\"location\" :  {\n\t\t\"place\" : \"{{SAMPLE_PLACE_ID_PLANT}}\"\n\t},\n\t\"customFields\" : {\n\t\t\"destinationplace\" : \"{{SAMPLE_PLACE_ID_DISTRIBUTION_CENTRE}}\"\n\n\t}\n}"
+				},
+				"url": {
+					"raw": "{{SERVER}}/thngs/{{SAMPLE_FINISHED_PRODUCT_PALLET_ID}}/actions/_Outbound",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"thngs",
+						"{{SAMPLE_FINISHED_PRODUCT_PALLET_ID}}",
+						"actions",
+						"_Outbound"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "16b - Inbound Distribution Centre",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"type\" : \"_Inbound\",\n\t\"location\" :  {\n\t\t\"place\" : \"{{SAMPLE_PLACE_ID_DISTRIBUTION_CENTRE}}\"\n\t},\n\t\"customFields\" : {\n\t\t\"fromplace\" : \"{{SAMPLE_PLACE_ID_PLANT}}\"\n\n\t}\n}"
+				},
+				"url": {
+					"raw": "{{SERVER}}/thngs/{{SAMPLE_FINISHED_PRODUCT_PALLET_ID}}/actions/_Inbound",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"thngs",
+						"{{SAMPLE_FINISHED_PRODUCT_PALLET_ID}}",
+						"actions",
+						"_Inbound"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "16c - From Distribution Centre to Customer",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json"
+					},
+					{
+						"key": "Authorization",
+						"value": "{{OPERATOR_API_KEY}}"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"type\" : \"_Outbound\",\n\t\"tags\": [\"Customer\"],\n\t\"location\" :  {\n\t\t\"place\" : \"{{SAMPLE_PLACE_ID_DISTRIBUTION_CENTRE}}\"\n\t},\n        \"customFields\": {\n            \"destinationCustomer\": {\n                \"address\": {\n                    \"city\": \"St Albans\",\n                    \"country\": \"United Kingdom\",\n                    \"postalCode\": \"AL23DA\",\n                    \"street\": \"319 Watford Road\"\n                },\n                \"name\": \"Customer Name\"\n            }\n        }\n        \n}"
+				},
+				"url": {
+					"raw": "{{SERVER}}/thngs/{{SAMPLE_FINISHED_PRODUCT_PALLET_ID}}/actions/_Outbound",
+					"host": [
+						"{{SERVER}}"
+					],
+					"path": [
+						"thngs",
+						"{{SAMPLE_FINISHED_PRODUCT_PALLET_ID}}",
+						"actions",
+						"_Outbound"
+					],
+					"query": [
+						{
+							"key": "nextPageToken",
+							"value": "Unaf3xG7BMsrQ7aaaYhnqgrm",
+							"equals": true,
+							"disabled": true
+						}
+					]
+				},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

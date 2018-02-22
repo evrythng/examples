@@ -1,0 +1,94 @@
+[
+	{
+		"customFields": {
+			"displayname": "Inbound",
+			"icon": "glyphicon-transfer"
+		},
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Inbound Movement",
+		"name": "_Inbound"
+	},
+	{
+		"customFields": {
+			"displayname": "Raw Material Consumption",
+			"icon": "glyphicon-transfer"
+		},
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Raw Material Consumed",
+		"name": "_RawMaterialConsumed"
+	},
+	{
+		"customFields": {
+			"displayname": "Outbound",
+			"icon": "glyphicon-transfer"
+		},
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Outbound Movement",
+		"updatedAt": 1484731898699,
+		"name": "_Outbound"
+	},
+	{
+		"id": "UFY9AedrqG8hE6aRahFnPQnh",
+		"createdAt": 1484731453891,
+		"customFields": {
+			"displayname": "Item Disposed of",
+			"icon": "glyphicon-trash"
+		},
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Item Displosed / Destroyed",
+		"updatedAt": 1484731453891,
+		"name": "_Disposed"
+	},
+	{
+		"id": "UFYBp7DaeUKHVPyKYxTWDbHn",
+		"createdAt": 1484045664390,
+		"customFields": {
+			"alerttype": "alert",
+			"displayname": "Out of Market",
+			"icon": "glyphicon-globe"
+		},
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Item Scanned out of Market / Region",
+		"updatedAt": 1484045673923,
+		"name": "_OutOfMarket"
+	},
+	{
+		"id": "U2hUf4fDpDwEf3dcxfHPgeea",
+		"createdAt": 1483954774130,
+		"customFields": {
+			"alerttype": "alert",
+			"displayname": "Product Recall",
+			"icon": "glyphicon-hand-left"
+		},
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Recalled Product was Scanned",
+		"updatedAt": 1483954822656,
+		"name": "_Recall"
+	},
+	{
+		"id": "UFhAfHWXAEMqTrSh4QpC4pFd",
+		"createdAt": 1483954774129,
+		"customFields": {
+			"alerttype": "warning",
+			"displayname": "Expired Product Scanned",
+			"icon": "glyphicon-remove"
+		},
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Expired Product Scanned",
+
+		"updatedAt": 1483954875797,
+		"name": "_Expired"
+	},
+	{
+		"id": "UkYAWnWDed54BPypYxeYnq3h",
+		"createdAt": 1483954774118,
+		"customFields": {
+			"displayname": "In Market Product",
+			"icon": "glyphicon-saved"
+		},
+		"tags": ["Evrythng", "Supply Chain"],
+		"description": "Product Scanned in Intended Market",
+		"updatedAt": 1484045592992,
+		"name": "_InMarket"
+	}
+]
