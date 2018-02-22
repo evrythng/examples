@@ -1,3 +1,4 @@
-# Supply Chain Examples
+# Customer Solution Examples
 
-Tutorials and examples to work with the EVRYTHNG cloud in a supply Chain Context
+A Series of examples, code snippets and utilities for developing applications on
+the EVRYTHNG platform.
