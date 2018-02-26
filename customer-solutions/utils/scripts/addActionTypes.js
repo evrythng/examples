@@ -2,19 +2,17 @@
 // Operator API Key
 const OPERATOR_API_KEY = "";
 // API Server
-const SERVER = "http://api.evrythng.com";
+const SERVER = "http://api-eu.evrythng.com";
 // Action Types JSON File
-const ACTION_TYPES_FILE = require("./testdata/testActionTypes.json");
+const ACTION_TYPES_FILE = require("../../supply-chain/actiontypes/gs1_supply_chain_action_types.json");
 // Scope to all projects in this account by default
-const SCOPE_TO_ALL = false;
-
-// Is valid key length
-const isValidKeyLength = key => {
-  if (key.length != 80) {
-    return false;
-  }
-  return true;
-};
+const SCOPE_TO_ALL = true;
+//evrythng setup
+const EVT = require("evrythng-extended");
+EVT.setup({
+  apiUrl: SERVER
+});
+const operator = new EVT.Operator(OPERATOR_API_KEY);
 
 // add types
 const addType = async type => {
@@ -24,6 +22,7 @@ const addType = async type => {
     console.log("Added Type : " + type.name);
     // if type avaiable on ALL projects
     if (SCOPE_TO_ALL) {
+      console.log("Scoping to All Projects");
       const scopedType = await operator.actionType(type.name).update({
         scopes: {
           projects: ["+all"],
@@ -39,14 +38,7 @@ const addType = async type => {
   }
 };
 
-//evrythng setup
-const EVT = require("evrythng-extended");
-operator = new EVT.Operator(OPERATOR_API_KEY);
-
-const numberOfTypes = 0;
+let numberOfTypes = 0;
 ACTION_TYPES_FILE.map(actiontype => {
-  if (addType(actiontype)) {
-    numberOfTypes++;
-  }
-  console.log("Number of Action Types Added : " + numberOfTypes);
+  const resp = addType(actiontype);
 });

@@ -6,7 +6,7 @@
       "icon": "glyphicon-user"
     },
     "description": "Successful scan with recognized Product or Thng",
-    "tags": "xxx"
+    "tags": ["Evrythng", "Consumer Engagement"]
   },
   {
     "name": "_ScanNotRecognized",
@@ -16,7 +16,7 @@
     },
     "description":
       "Failed to recognize image (high confidence not the right general characteristics e.g. a cat when expecting a can), bar code, characters, PIN code didn’t match pattern",
-    "tags": "xxx"
+    "tags": ["Evrythng", "Consumer Engagement"]
   },
   {
     "name": "_ScanNotFound",
@@ -26,7 +26,7 @@
     },
     "description":
       "Recognized the image as correct type, bar code, characters, PIN code but couldn’t find a Product or a Thng",
-    "tags": "xxx"
+    "tags": ["Evrythng", "Consumer Engagement"]
   },
   {
     "name": "_DuplicateSeen",
@@ -35,7 +35,7 @@
       "icon": "glyphicon-user"
     },
     "description": "The scan matched as a duplicate",
-    "tags": "xxx"
+    "tags": ["Evrythng", "Consumer Engagement"]
   },
   {
     "name": "_OfferGiven",
@@ -44,7 +44,7 @@
       "icon": "glyphicon-user"
     },
     "description": "Offer presented to consumer",
-    "tags": "xxx"
+    "tags": ["Evrythng", "Consumer Engagement"]
   },
   {
     "name": "_OfferSeen",
@@ -53,7 +53,7 @@
       "icon": "glyphicon-user"
     },
     "description": "Offer seen/opened by consumer",
-    "tags": "xxx"
+    "tags": ["Evrythng", "Consumer Engagement"]
   },
   {
     "name": "_OfferUsed",
@@ -62,7 +62,7 @@
       "icon": "glyphicon-user"
     },
     "description": "Offer has been used by consumer and can be used again",
-    "tags": "xxx"
+    "tags": ["Evrythng", "Consumer Engagement"]
   },
   {
     "name": "_OfferConsumed",
@@ -71,7 +71,7 @@
       "icon": "glyphicon-user"
     },
     "description": "Offer has been consumed and can no longer be used",
-    "tags": "xxx"
+    "tags": ["Evrythng", "Consumer Engagement"]
   },
   {
     "name": "_UserAuthenticated",
@@ -80,7 +80,7 @@
       "icon": "glyphicon-user"
     },
     "description": "User authenticated from anonymous user to known user",
-    "tags": "xxx"
+    "tags": ["Evrythng", "Consumer Engagement"]
   },
   {
     "name": "_Purchased",
@@ -89,7 +89,7 @@
       "icon": "glyphicon-user"
     },
     "description": "Item has been purchased",
-    "tags": "xxx"
+    "tags": ["Evrythng", "Consumer Engagement"]
   },
   {
     "name": "_Registered",
@@ -98,6 +98,6 @@
       "icon": "glyphicon-user"
     },
     "description": "Item has been registered to a consumer/user",
-    "tags": "xxx"
+    "tags": ["Evrythng", "Consumer Engagement"]
   }
 ]
