@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="" ?>
+<Products xmlns="http://schema.org/Product">
+    <Product>
+        <name></name>
+        <description></description>
+        <brand></brand>
+        <category></category>
+        <gtin13></gtin13>
+        <additionalProperty>
+            <name></name>
+            <value></value>
+        </additionalProperty>
+    </Product>
+</Products>

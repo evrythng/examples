@@ -12,5 +12,10 @@ repositories {
 dependencies {
     compile group: 'com.evrythng', name: 'evrythng-java-wrapper', version: '1.33'
 
+    compile group: 'org.apache.camel', name: 'camel-core', version: '2.18.2'
+    compile group: 'org.apache.camel', name: 'camel-jaxb', version: '2.18.2'
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
+
+    testCompile group: 'org.apache.camel', name: 'camel-test', version: '2.18.2'
 }

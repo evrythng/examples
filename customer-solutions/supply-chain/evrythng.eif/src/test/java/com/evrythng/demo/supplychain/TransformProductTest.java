@@ -3,6 +3,7 @@ package com.evrythng.demo.supplychain;
 import com.evrythng.thng.resource.model.store.Product;
 import org.junit.Before;
 import org.junit.Test;
+import org.schema.identifier.GTIN13;
 
 import static org.junit.Assert.*;
 
@@ -12,7 +13,13 @@ public class TransformProductTest {
 
     @Before
     public void setUp() {
-        evtProduct = new TransformProduct().convert(new org.schema.Product());
+        org.schema.Product input = new org.schema.Product();
+        input.name = "Glass";
+        input.brand = "Glass Suppliers Ltd";
+        input.description = "75 cl empty bottles";
+        input.gtin13 = new GTIN13("8274659839027");
+        input.additionalProperty.put("qty_per_pallet", 960);
+        evtProduct = new TransformProduct().convert(input);
     }
 
     @Test
@@ -32,7 +39,7 @@ public class TransformProductTest {
 
     @Test
     public void testEAN() {
-        assertEquals("82746598390275638", evtProduct.getIdentifiers().get("EAN"));
+        assertEquals("8274659839027", evtProduct.getIdentifiers().get("EAN"));
     }
 
     @Test
