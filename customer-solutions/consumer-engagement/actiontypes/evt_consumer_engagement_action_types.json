@@ -1,103 +1,103 @@
 [
-	{
-		"name": "_ScanFound",
-		"customFields": {
-			"displayname": "Successful Scan",
-			"icon": "glyphicon-user"
-		},
-		"description": "Successful scan with recognized Product or Thng",
-		"tags": "xxx"
-	},
-	{
-		"name": "_ScanNotRecognized",
-		"customFields": {
-			"displayname": "Failed Scan",
-			"icon": "glyphicon-user"
-		},
-		"description":
-			"Failed to recognize image (high confidence not the right general characteristics e.g. a cat when expecting a can), bar code, characters, PIN code didn’t match pattern",
-		"tags": "xxx"
-	},
-	{
-		"name": "_ScanNotFound",
-		"customFields": {
-			"displayname": "Not Found",
-			"icon": "glyphicon-user"
-		},
-		"description":
-			"Recognized the image as correct type, bar code, characters, PIN code but couldn’t find a Product or a Thng",
-		"tags": "xxx"
-	},
-	{
-		"name": "_DuplicateSeen",
-		"customFields": {
-			"displayname": "Duplicate",
-			"icon": "glyphicon-user"
-		},
-		"description": "The scan matched as a duplicate",
-		"tags": "xxx"
-	},
-	{
-		"name": "_OfferGiven",
-		"customFields": {
-			"displayname": "Offer Given",
-			"icon": "glyphicon-user"
-		},
-		"description": "Offer presented to consumer",
-		"tags": "xxx"
-	},
-	{
-		"name": "_OfferSeen",
-		"customFields": {
-			"displayname": "Offer Seen",
-			"icon": "glyphicon-user"
-		},
-		"description": "Offer seen/opened by consumer",
-		"tags": "xxx"
-	},
-	{
-		"name": "_OfferUsed",
-		"customFields": {
-			"displayname": "Offer Used",
-			"icon": "glyphicon-user"
-		},
-		"description": "Offer has been used by consumer and can be used again",
-		"tags": "xxx"
-	},
-	{
-		"name": "_OfferConsumed",
-		"customFields": {
-			"displayname": "Offer Consumed",
-			"icon": "glyphicon-user"
-		},
-		"description": "Offer has been consumed and can no longer be used",
-		"tags": "xxx"
-	},
-	{
-		"name": "_UserAuthenticated",
-		"customFields": {
-			"displayname": "User Authenticated",
-			"icon": "glyphicon-user"
-		},
-		"description": "User authenticated from anonymous user to known user",
-		"tags": "xxx"
-	},
-	{
-		"name": "_Purchased",
-		"customFields": {
-			"displayname": "Purchased",
-			"icon": "glyphicon-user"
-		},
-		"description": "Item has been purchased",
-		"tags": "xxx"
-	},
-	{
-		"name": "_Registered",
-		"customFields": {
-			"displayname": "Registered",
-			"icon": "glyphicon-user"
-		},
-		"description": "Item has been registered to a consumer/user",
-		"tags": "xxx"
-	}
+  {
+    "name": "_ScanFound",
+    "customFields": {
+      "displayname": "Successful Scan",
+      "icon": "glyphicon-user"
+    },
+    "description": "Successful scan with recognized Product or Thng",
+    "tags": "xxx"
+  },
+  {
+    "name": "_ScanNotRecognized",
+    "customFields": {
+      "displayname": "Failed Scan",
+      "icon": "glyphicon-user"
+    },
+    "description":
+      "Failed to recognize image (high confidence not the right general characteristics e.g. a cat when expecting a can), bar code, characters, PIN code didn’t match pattern",
+    "tags": "xxx"
+  },
+  {
+    "name": "_ScanNotFound",
+    "customFields": {
+      "displayname": "Not Found",
+      "icon": "glyphicon-user"
+    },
+    "description":
+      "Recognized the image as correct type, bar code, characters, PIN code but couldn’t find a Product or a Thng",
+    "tags": "xxx"
+  },
+  {
+    "name": "_DuplicateSeen",
+    "customFields": {
+      "displayname": "Duplicate",
+      "icon": "glyphicon-user"
+    },
+    "description": "The scan matched as a duplicate",
+    "tags": "xxx"
+  },
+  {
+    "name": "_OfferGiven",
+    "customFields": {
+      "displayname": "Offer Given",
+      "icon": "glyphicon-user"
+    },
+    "description": "Offer presented to consumer",
+    "tags": "xxx"
+  },
+  {
+    "name": "_OfferSeen",
+    "customFields": {
+      "displayname": "Offer Seen",
+      "icon": "glyphicon-user"
+    },
+    "description": "Offer seen/opened by consumer",
+    "tags": "xxx"
+  },
+  {
+    "name": "_OfferUsed",
+    "customFields": {
+      "displayname": "Offer Used",
+      "icon": "glyphicon-user"
+    },
+    "description": "Offer has been used by consumer and can be used again",
+    "tags": "xxx"
+  },
+  {
+    "name": "_OfferConsumed",
+    "customFields": {
+      "displayname": "Offer Consumed",
+      "icon": "glyphicon-user"
+    },
+    "description": "Offer has been consumed and can no longer be used",
+    "tags": "xxx"
+  },
+  {
+    "name": "_UserAuthenticated",
+    "customFields": {
+      "displayname": "User Authenticated",
+      "icon": "glyphicon-user"
+    },
+    "description": "User authenticated from anonymous user to known user",
+    "tags": "xxx"
+  },
+  {
+    "name": "_Purchased",
+    "customFields": {
+      "displayname": "Purchased",
+      "icon": "glyphicon-user"
+    },
+    "description": "Item has been purchased",
+    "tags": "xxx"
+  },
+  {
+    "name": "_Registered",
+    "customFields": {
+      "displayname": "Registered",
+      "icon": "glyphicon-user"
+    },
+    "description": "Item has been registered to a consumer/user",
+    "tags": "xxx"
+  }
 ]
