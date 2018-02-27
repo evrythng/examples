@@ -11,7 +11,7 @@ public class ProductLoader extends RouteBuilder implements Runnable {
 
         from("file:src/data")
                 .choice()
-                    .when(xpath("namespace-uri(/Products) = 'http://schema.org/Product'"))
+                    .when(xpath("namespace-uri(/*) = 'http://schema.org/Product'"))
                         .log("Received XML file containing Products")
                         .split(xpath(Products.XPATH_PRODUCTS))
                         .unmarshal().jaxb(Products.CONTEXT_PATH)

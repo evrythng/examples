@@ -1,5 +1,5 @@
 group 'com.evrythng'
-version '0.18.55'
+version '0.18.56'
 
 apply plugin: 'java'
 
