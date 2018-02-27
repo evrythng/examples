@@ -6,13 +6,12 @@ import org.apache.camel.test.junit4.CamelTestSupport;
 import org.junit.Test;
 import org.schema.Products;
 
-import static org.junit.Assert.*;
-
-public class ProductLoadTest extends CamelTestSupport {
+public class ProductLoaderTest extends CamelTestSupport {
 
     @Test
     public void parseProductsXML() {
         MockEndpoint skus = getMockEndpoint("mock:skus-xml");
+        skus.expectedMessageCount(2);
     }
 
     @Override
@@ -21,8 +20,8 @@ public class ProductLoadTest extends CamelTestSupport {
             @Override
             public void configure() throws Exception {
                 from("seda:input")
-                        .split(xpath("//Products/Product"))
-                        .unmarshal().jaxb("org.schema")
+                        .split(xpath(Products.XPATH_PRODUCTS))
+                        .unmarshal().jaxb(Products.CONTEXT_PATH)
                         .to("mock:skus-xml");
             }
         };
