@@ -1,4 +1,4 @@
-package com.evrythng.demo.supplychain;
+package com.evrythng.demo.supplychain.products;
 
 import com.evrythng.thng.resource.model.store.Product;
 

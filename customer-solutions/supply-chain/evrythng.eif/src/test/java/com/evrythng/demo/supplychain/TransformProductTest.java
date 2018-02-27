@@ -1,5 +1,6 @@
 package com.evrythng.demo.supplychain;
 
+import com.evrythng.demo.supplychain.products.TransformProduct;
 import com.evrythng.thng.resource.model.store.Product;
 import org.junit.Before;
 import org.junit.Test;

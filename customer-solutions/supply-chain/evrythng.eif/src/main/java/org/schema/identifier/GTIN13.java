@@ -24,7 +24,10 @@ public class GTIN13 {
         }
     }
 
-    public final String gtin;
+    /* For JAXB */
+    public GTIN13() {};
+
+    public String gtin;
 
     @Override
     public String toString() {
