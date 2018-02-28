@@ -2,6 +2,7 @@ package com.evrythng.demo.supplychain;
 
 import com.evrythng.demo.supplychain.products.ProductLoader;
 import com.evrythng.demo.supplychain.products.ProductProcessor;
+import com.evrythng.demo.supplychain.products.UnreliableProductLoader;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.main.Main;
 import org.schema.Products;
@@ -22,10 +23,11 @@ public class ProductsLoader extends RouteBuilder implements Runnable {
                     .otherwise()
                         .log("Ignoring file");
         from("seda:sku-xml")
-                .log("Product!")
                 .process(new ProductProcessor())
-                .process(new ProductLoader());
-
+                .process(new UnreliableProductLoader())
+                .errorHandler(deadLetterChannel("seda:errors"));
+        from("seda:errors")
+                .log("Error!");
     }
 
     @Override
