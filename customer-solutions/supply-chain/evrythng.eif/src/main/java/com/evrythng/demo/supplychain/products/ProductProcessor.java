@@ -13,11 +13,9 @@ import java.util.Optional;
 public class ProductProcessor implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
-        System.out.println("***** TRANSFORM 1 ******");
         Optional<org.schema.Product> skuInfo = Optional.ofNullable(exchange.getIn().getBody(org.schema.Product.class));
         if (skuInfo.isPresent()) {
-            System.out.println("***** TRANSFORM 2 ******");
-            TransformProduct transformProduct = new TransformProduct();
+            TransformGS1ProductToEVTProduct transformProduct = new TransformGS1ProductToEVTProduct();
             Message message = new DefaultMessage();
             message.setBody(transformProduct.convert(skuInfo.get()));
             exchange.setOut(message);

@@ -1,5 +1,5 @@
 group 'com.evrythng'
-version '0.18.56'
+version '0.18.57'
 
 apply plugin: 'java'
 
@@ -11,7 +11,7 @@ repositories {
 
 dependencies {
     compile group: 'com.evrythng', name: 'evrythng-java-wrapper', version: '1.33'
-    compile 'com.google.code.gson:gson:2.8.2'
+    compile group: 'org.json', name: 'json', version: '20180130'
 
     compile group: 'org.apache.camel', name: 'camel-core', version: '2.18.2'
     compile group: 'org.apache.camel', name: 'camel-jaxb', version: '2.18.2'

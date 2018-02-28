@@ -2,14 +2,15 @@ package com.evrythng.demo.supplychain.products;
 
 import com.evrythng.thng.resource.model.store.Product;
 
+import java.util.ArrayList;
 import java.util.Map;
 
 /**
  * Transform GS1/Product to EVT/Product.
  */
-public class TransformProduct {
+public class TransformGS1ProductToEVTProduct {
 
-    public TransformProduct() {
+    public TransformGS1ProductToEVTProduct() {
         this.target = new Product();
     }
 
@@ -22,6 +23,8 @@ public class TransformProduct {
                 .description(src)
                 .gtin(src)
                 .additionalProperties(src)
+                .images(src)
+                .categories(src)
                 .toEVT();
     }
 
@@ -29,7 +32,7 @@ public class TransformProduct {
         return this.target;
     }
 
-    private TransformProduct name(org.schema.Product p) {
+    private TransformGS1ProductToEVTProduct name(org.schema.Product p) {
         if (p.name != null && !p.name.isEmpty()) {
             target.setName(p.name);
         } else {
@@ -38,30 +41,50 @@ public class TransformProduct {
         return this;
     }
 
-    private TransformProduct brand(org.schema.Product p) {
+    private TransformGS1ProductToEVTProduct brand(org.schema.Product p) {
         if (p.brand != null && !p.brand.isEmpty()) {
             target.setBrand(p.brand);
         }
         return this;
     }
 
-    private TransformProduct description(org.schema.Product p) {
+    private TransformGS1ProductToEVTProduct description(org.schema.Product p) {
         if (p.description != null && !p.description.isEmpty()) {
             target.setDescription(p.description);
         }
         return this;
     }
 
-    private TransformProduct gtin(org.schema.Product p) {
+    private TransformGS1ProductToEVTProduct gtin(org.schema.Product p) {
         if (p.gtin13 != null) {
             target.addIdentifier("EAN", p.gtin13.gtin);
         }
         return this;
     }
 
-    private TransformProduct additionalProperties(org.schema.Product p) {
+    private TransformGS1ProductToEVTProduct additionalProperties(org.schema.Product p) {
         for (Map.Entry<String, Number> entry : p.additionalProperty.entrySet()) {
             target.addCustomFields(entry.getKey(), entry.getValue());
+        }
+        return this;
+    }
+
+    private TransformGS1ProductToEVTProduct images(org.schema.Product p) {
+        if (p.image != null) {
+            if (target.getPhotos() == null) {
+                target.setPhotos(new ArrayList<>());
+            }
+            target.getPhotos().add(p.image.toString());
+        }
+        return this;
+    }
+
+    private TransformGS1ProductToEVTProduct categories(org.schema.Product p) {
+        if (p.category != null) {
+            target.setTags(new ArrayList<>());
+            for(String tag: p.category.trim().split("/")) {
+                target.getTags().add(tag);
+            }
         }
         return this;
     }

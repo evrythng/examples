@@ -1,6 +1,6 @@
 package com.evrythng.demo.supplychain;
 
-import com.evrythng.demo.supplychain.products.TransformProduct;
+import com.evrythng.demo.supplychain.products.TransformGS1ProductToEVTProduct;
 import com.evrythng.thng.resource.model.store.Product;
 import org.junit.Before;
 import org.junit.Test;
@@ -20,7 +20,8 @@ public class TransformProductTest {
         input.description = "75 cl empty bottles";
         input.gtin13 = new GTIN13("8274659839027");
         input.additionalProperty.put("qty_per_pallet", 960);
-        evtProduct = new TransformProduct().convert(input);
+        input.category = "Finished Product/Wine";
+        evtProduct = new TransformGS1ProductToEVTProduct().convert(input);
     }
 
     @Test
@@ -46,6 +47,14 @@ public class TransformProductTest {
     @Test
     public void testQuantityPerPallet() {
         assertEquals(960, evtProduct.getCustomFields().get("qty_per_pallet"));
+    }
+
+    @Test
+    public void testCategoriesSplitOnSlash() {
+        assertNotNull(evtProduct.getTags());
+        assertEquals(2, evtProduct.getTags().size());
+        assertEquals("Finished Product", evtProduct.getTags().get(0));
+        assertEquals("Wine", evtProduct.getTags().get(1));
     }
 
 }
