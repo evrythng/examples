@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 /**
- * Base class, EVT aware
+ * Base class, EVT aware.
  */
 public abstract class EVTLoader {
 

@@ -1,6 +1,5 @@
 package com.evrythng.demo.supplychain;
 
-import com.evrythng.demo.supplychain.products.ProductLoader;
 import com.evrythng.demo.supplychain.products.ProductProcessor;
 import com.evrythng.demo.supplychain.products.UnreliableProductLoader;
 import org.apache.camel.builder.RouteBuilder;

@@ -1,5 +1,5 @@
 group 'com.evrythng'
-version '0.18.58'
+version '0.18.59'
 
 apply plugin: 'java'
 
@@ -21,4 +21,16 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
 
     testCompile group: 'org.apache.camel', name: 'camel-test', version: '2.18.2'
+}
+
+def camelRouteBuilderMain = "com.evrythng.demo.supplychain.ProductsLoader"
+
+jar {
+    manifest {
+        attributes "Main-Class": "$camelRouteBuilderMain"
+    }
+
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
 }
