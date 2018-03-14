@@ -1,0 +1,14 @@
+{
+  "name": "utils",
+  "version": "1.0.0",
+  "description":
+    "A set of common utilities for working with the evrthng platform",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "DASHENHURST",
+  "license": "ISC",
+  "devDependencies": {
+    "evrythng-extended": "^4.7.2"
+  }
+}

@@ -1,0 +1,11 @@
+[
+  {
+    "customFields": {
+      "displayname": "Test Type",
+      "icon": "glyphicon-transfer"
+    },
+    "tags": ["Evrythng", "TEST"],
+    "description": "Test Action Type",
+    "name": "_TestActionType"
+  }
+]
