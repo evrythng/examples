@@ -1,9 +1,6 @@
 package org.schema.identifier;
 
-import javax.xml.bind.annotation.XmlAccessType;
-import javax.xml.bind.annotation.XmlAccessorType;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 /**
  * The GTIN-13 code of the product, or the product to which the offer refers.
@@ -14,29 +11,29 @@ import javax.xml.bind.annotation.XmlType;
  * GTIN - https://www.gtin.info/
  *
  */
-@XmlType(factoryMethod="newInstance")
-@XmlRootElement
 public class GTIN13 {
 
-    /**
-     * Validates GTIN.
-     *
-     * @throws IllegalArgumentException if not 13 digits
-     */
-    public GTIN13(String s) {
-        if (s != null && s.matches("[0-9]{13}")) {
-            this.gtin = s;
+    private String gtin;
+
+    @XmlValue
+    public String getValue() {
+        return gtin;
+    }
+
+    public void setValue(String value) {
+        if (value != null && value.matches("[0-9]{13}")) {
+            this.gtin = value;
         } else {
-            throw new IllegalArgumentException(s);
+            throw new IllegalArgumentException(value);
         }
     }
 
     /* For JAXB */
     public GTIN13() {};
 
-    public static GTIN13 newInstance() { return new GTIN13(); };
-
-    public String gtin;
+    public GTIN13(String value) {
+        this.setValue(value);
+    };
 
     @Override
     public String toString() {

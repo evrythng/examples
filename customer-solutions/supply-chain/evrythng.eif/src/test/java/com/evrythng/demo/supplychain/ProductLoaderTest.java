@@ -10,8 +10,8 @@ public class ProductLoaderTest extends CamelTestSupport {
 
     @Test
     public void parseProductsXML() {
-        MockEndpoint skus = getMockEndpoint("mock:skus-xml");
-        skus.expectedMessageCount(2);
+        MockEndpoint products = getMockEndpoint("mock:products-xml");
+        products.expectedMessageCount(2);
     }
 
     @Override
@@ -22,7 +22,7 @@ public class ProductLoaderTest extends CamelTestSupport {
                 from("seda:input")
                         .split(xpath(Products.XPATH_PRODUCTS))
                         .unmarshal().jaxb(Products.CONTEXT_PATH)
-                        .to("mock:skus-xml");
+                        .to("mock:products-xml");
             }
         };
     }

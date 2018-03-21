@@ -8,7 +8,7 @@ public class GTIN13Test {
 
     @Test
     public void testGTIN() {
-        assertEquals("1234567890123", new GTIN13("1234567890123").gtin);
+        assertEquals("1234567890123", new GTIN13("1234567890123").toString());
     }
 
     @Test(expected = IllegalArgumentException.class)

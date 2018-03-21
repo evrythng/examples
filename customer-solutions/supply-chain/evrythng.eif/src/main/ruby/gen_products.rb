@@ -58,8 +58,9 @@ def product_generator
     sizes    = Sizes
     loop do
       color = colors.next
-      n = sprintf("%s %s (%s)", color, products.next, sizes.next)
-      y << {name: n, ean: eans.next}
+      product = products.next
+      n = sprintf("%s %s (%s)", color, product, sizes.next)
+      y << {name: n, ean: eans.next, product:product}
     end
   end
 end
@@ -69,13 +70,16 @@ def products_xml(products)
   @products = products
   builder = Nokogiri::XML::Builder.new { |xml|
     xml.Products('xmlns' => 'http://schema.org/Product') do
-      @products.each do |product|
+      @products.each { |product|
         xml.Product { |p|
-          p.name product[:name]
-          p.gtin13 product[:ean]
-          p.image 'https://www.gs1.org/sites/all/themes/custom/gsone_phoenix_toolkit/images/GS1_Corporate_logo.png'
+          p.name        product[:name]
+          p.description product[:name]
+          p.gtin13      product[:ean]
+          p.brand       'ACME'
+          p.category    ['Apparel', product[:product]].join('/')
+          p.image       'https://www.gs1.org/sites/all/themes/custom/gsone_phoenix_toolkit/images/GS1_Corporate_logo.png'
         }
-      end
+      }
     end
   }
   return builder.to_xml  

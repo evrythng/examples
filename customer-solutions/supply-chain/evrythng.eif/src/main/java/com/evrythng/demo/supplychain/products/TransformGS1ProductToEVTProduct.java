@@ -56,8 +56,8 @@ public class TransformGS1ProductToEVTProduct {
     }
 
     private TransformGS1ProductToEVTProduct gtin(org.schema.Product p) {
-        if (p.gtin13 != null) {
-            target.addIdentifier("EAN", p.gtin13.gtin);
+        if (p.toString() != null) {
+            target.addIdentifier("EAN", p.gtin13.toString());
         }
         return this;
     }
