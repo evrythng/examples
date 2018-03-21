@@ -6,7 +6,20 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.main.Main;
 import org.schema.Products;
 
-public class ProductsLoader extends RouteBuilder implements Runnable {
+/**
+ * Apache Camel Pipeline that reads GS1 Products XML file and
+ * loads them as EVT Products.
+ */
+public class XMLProductsLoaderPipeline extends RouteBuilder implements Runnable {
+
+    public static final int REQUESTS_PER_SECOND = 30;
+
+    /* Fan out with <code>seda:queue?concurrentConsumers=x</code> */
+    private static final int WRITER_THREADS = 4;
+
+    private static final String queueType        = "seda";
+    private static final String productsXMLQueue = String.format("%s:%s", queueType, "products-xml");
+    private static final String productsXMLQueueConsumer = String.format("%s?concurrentConsumers=%d", productsXMLQueue, WRITER_THREADS);
 
     @Override
     public void configure() throws Exception {
@@ -17,11 +30,11 @@ public class ProductsLoader extends RouteBuilder implements Runnable {
                         .log("Received XML file containing Products")
                         .split(Products.ns.xpath(Products.XPATH_PRODUCTS))
                         .unmarshal().jaxb(Products.CONTEXT_PATH)
-                        .to("seda:sku-xml")
+                        .to(productsXMLQueue)
                         .endChoice()
                     .otherwise()
                         .log("Ignoring file");
-        from("seda:sku-xml")
+        from(productsXMLQueueConsumer)
                 .process(new ProductProcessor())
                 .process(new UnreliableProductLoader())
                 .errorHandler(deadLetterChannel("seda:errors"));
@@ -32,7 +45,7 @@ public class ProductsLoader extends RouteBuilder implements Runnable {
     @Override
     public void run() {
         Main main = new Main();
-        main.addRouteBuilder(new ProductsLoader());
+        main.addRouteBuilder(new XMLProductsLoaderPipeline());
         try {
             main.run(new String[] {});
         } catch (Exception e) {
@@ -41,6 +54,6 @@ public class ProductsLoader extends RouteBuilder implements Runnable {
     }
 
     public static void main(String[] args) {
-        new ProductsLoader().run();
+        new XMLProductsLoaderPipeline().run();
     }
 }

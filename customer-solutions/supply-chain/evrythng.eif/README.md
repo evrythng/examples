@@ -20,8 +20,7 @@ Checkout the repository and build
     git clone git@github.com:evrythng/examples.git
 
     cd customer-solutions/supply-chain/evrythng.eif
-    gradle clean
-    gradle build
+    gradle clean build
 
 This will make a JAR file containing all dependencies:
 
@@ -50,4 +49,4 @@ Once the pipeline is running (see above) you can generate and load products with
 
 Or generate products to a new file:
 
-    ./gen_products.sh 1000
+    ./gen_products.sh 1000 > /tmp/products.xml

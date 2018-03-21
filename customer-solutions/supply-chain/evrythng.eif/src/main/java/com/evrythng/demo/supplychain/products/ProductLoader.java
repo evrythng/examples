@@ -23,7 +23,9 @@ public class ProductLoader implements Processor {
         Product product = exchange.getIn().getMandatoryBody(Product.class);
         product = productService.productCreator(product).execute();
         // TODO wrap in Circuit breaker
-        logger.info(new JSONObject().put("evt_id", product.getId()).toString());
+        logger.info(new JSONObject()
+                .put("evt_id", product.getId())
+                .put("identifiers", product.getIdentifiers()).toString());
     }
 
     private static Logger logger = LoggerFactory.getLogger("logentries");

@@ -1,5 +1,5 @@
 group 'com.evrythng'
-version '0.18.70'
+version '0.18.72'
 
 apply plugin: 'java'
 
@@ -25,7 +25,7 @@ dependencies {
     testCompile group: 'org.apache.camel', name: 'camel-test', version: '2.18.2'
 }
 
-def camelRouteBuilderMain = "com.evrythng.demo.supplychain.ProductsLoader"
+def camelRouteBuilderMain = "com.evrythng.demo.supplychain.XMLProductsLoaderPipeline"
 
 jar {
     manifest {

@@ -1,6 +1,6 @@
 package com.evrythng.demo.supplychain;
 
-import com.evrythng.demo.supplychain.products.TransformGS1ProductToEVTProduct;
+import com.evrythng.demo.supplychain.products.ProductProcessor;
 import com.evrythng.thng.resource.model.store.Product;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,7 +21,7 @@ public class TransformProductTest {
         input.gtin13 = new GTIN13("8274659839027");
         input.additionalProperty.put("qty_per_pallet", 960);
         input.category = "Finished Product/Wine";
-        evtProduct = new TransformGS1ProductToEVTProduct().convert(input);
+        evtProduct = new ProductProcessor.TransformGS1ProductToEVTProduct().convert(input);
     }
 
     @Test

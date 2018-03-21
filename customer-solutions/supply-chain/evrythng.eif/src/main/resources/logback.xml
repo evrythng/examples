@@ -31,7 +31,7 @@
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
-        <!--<appender-ref ref="LE"/>-->
+        <appender-ref ref="LE"/>
     </root>
 
     <!--<logger name="com.evrythng" level="INFO" />-->
