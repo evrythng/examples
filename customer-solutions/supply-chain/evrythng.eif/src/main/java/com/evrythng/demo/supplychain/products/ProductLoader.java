@@ -7,7 +7,8 @@ import org.apache.camel.Exchange;
 import org.apache.camel.Processor;
 import org.json.JSONObject;
 
-import java.util.logging.Logger;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class ProductLoader implements Processor {
 
@@ -25,5 +26,5 @@ public class ProductLoader implements Processor {
         logger.info(new JSONObject().put("evt_id", product.getId()).toString());
     }
 
-    private static final Logger logger = Logger.getLogger(ProductLoader.class.getName());
+    private static Logger logger = LoggerFactory.getLogger("logentries");
 }

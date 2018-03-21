@@ -15,9 +15,23 @@
         <file>target/camel-spring-boot-test.log</file>
     </appender>
 
+    <property name="patternString" value="%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n%rEx"  />
+    <appender name="LE" class="com.rapid7.logback.LogentriesAppender">
+        <Token>23ac75f2-5a5d-4a49-a1f7-bd1480dbbb32</Token>
+        <Region>eu</Region>
+        <Debug>False</Debug>
+        <Ssl>True</Ssl>
+        <facility>USER</facility>
+        <layout>
+            <pattern>%d{HH:mm:ss.SSS} [%thread] %-5level %logger{36} - %msg%n</pattern>
+        </layout>
+    </appender>
+
+
     <root level="INFO">
         <appender-ref ref="STDOUT"/>
         <appender-ref ref="FILE"/>
+        <appender-ref ref="LE"/>
     </root>
 
     <!--<logger name="com.evrythng" level="INFO" />-->
