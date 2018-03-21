@@ -4,41 +4,86 @@
 # Install:
 #
 #     brew install ruby
+#     gem install nokogiri
 #
+# Run and generate 100 products:
 #
-# Run
-#
-#     ruby src/main/ruby/gen_products.rb > products.xml
+#     ruby src/main/ruby/gen_products.rb 100 > products.xml
 #
 
 require 'csv'
 require 'date'
+require 'nokogiri'
+
+# Colors
 
 COLORS_CSV=File.join(File.dirname(__FILE__), "../../test/resources/codebrainz/colors.csv")
 
-class Colors
-  def initialize(f)
-    @names = CSV.read(f, :headers=>true).map {|r| r['name']}
+class String
+  def trim_clarifiers()
+    self.sub(/\s+\(\w+\)/,'')
   end
-  attr_reader :names
 end
 
-class EANGenerator
-  def initialize(prefix=500)
-    @prefix = prefix.to_i
-    @doy = Date.today.yday
-  end
+# Generate a seqence of colours
+def color_generator
+  names = CSV.read(COLORS_CSV, :headers=>true).map {|r| r['name']}
+  names.map {|s| s.trim_clarifiers }.shuffle.to_a.cycle
+end
 
-  def generate(n=1)
+
+# Generate an infinite sequence of EAN numbers
+def ean_generator(prefix=500)
+  Enumerator.new do |y|
+    doy = Date.today.yday
     t = (DateTime.now.to_time.to_i % 86400) * 100
-    y = DateTime.now.year.to_i % 10
-    return (1..n).map { |n| sprintf("%03d%03d%07d", @prefix, @doy, t + n) }
+    #yr = DateTime.now.year.to_i % 10
+    n=1
+    loop do
+      y << sprintf("%03d%03d%07d", prefix, doy, t + n)
+      n=n+1
+    end
   end
-
 end
 
-Sizes = ['S', 'M', 'L', 'XL']
+Sizes = ['S', 'M', 'L', 'XL'].cycle
 
-#puts Colors.new(COLORS_CSV).names.last.inspect
+Products = ['Beanie', 'Boots', 'Gloves', 'Scarf'].cycle
 
-#puts EANGenerator.new(500).generate(100)
+def product_generator
+  Enumerator.new do |y|
+    colors   = color_generator()
+    eans     = ean_generator()
+    products = Products
+    sizes    = Sizes
+    loop do
+      color = colors.next
+      n = sprintf("%s %s (%s)", color, products.next, sizes.next)
+      y << {name: n, ean: eans.next}
+    end
+  end
+end
+
+# Convert list of product maps to GS1 XML
+def products_xml(products)
+  @products = products
+  builder = Nokogiri::XML::Builder.new { |xml|
+    xml.Products('xmlns' => 'http://schema.org/Product') do
+      @products.each do |product|
+        xml.Product { |p|
+          p.name product[:name]
+          p.gtin13 product[:ean]
+          p.image 'https://www.gs1.org/sites/all/themes/custom/gsone_phoenix_toolkit/images/GS1_Corporate_logo.png'
+        }
+      end
+    end
+  }
+  return builder.to_xml  
+end
+
+# First argument to this program is number of records to generate
+def product_count 
+  ARGV.first.to_i + 1
+end
+
+puts products_xml(product_generator().take(product_count))
