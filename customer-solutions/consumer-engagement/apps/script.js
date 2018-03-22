@@ -14,9 +14,9 @@ let app = {};
 let appUser = {};
 
 // Recognition
-const tagRecognitionMethod = "2d"; // QR Code or Data Matrix Code
+// const tagRecognitionMethod = "2d"; // QR Code or Data Matrix Code
 // const tagRecognitionMethod = "ir"; // Logo / Image Recognition
-// const tagRecognitionMethod = "1d"; // 1D barcode
+const tagRecognitionMethod = "1d"; // 1D barcode
 
 // Actions
 const scanSuccessAction = "_ScanSuccess";
