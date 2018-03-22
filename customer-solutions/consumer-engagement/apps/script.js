@@ -14,9 +14,9 @@ let app = {};
 let appUser = {};
 
 // Recognition
-// const tagRecognitionMethod = "2d"; // QR Code or Data Matrix Code
-const tagRecognitionMethod = "ir"; // Logo / Image Recognition
-//const tagRecognitionMethod = "1d"; // 1D barcode
+const tagRecognitionMethod = "2d"; // QR Code or Data Matrix Code
+// const tagRecognitionMethod = "ir"; // Logo / Image Recognition
+// const tagRecognitionMethod = "1d"; // 1D barcode
 
 // Actions
 const scanSuccessAction = "_ScanSuccess";
@@ -70,6 +70,7 @@ const handleResponse = resp => {
     console.log("Item not Found");
   } else {
     console.log("Result " + JSON.stringify(resp[0].results, null, 2));
+    // item found add scan action
   }
 };
 
@@ -88,9 +89,9 @@ const scan = () => {
   // scan
   app
     .scan()
-    .then(function(result) {
-      console.log(result);
-      handleResponse(result);
+    .then(function(response) {
+      console.log("response : " + JSON.stringify(response, null, 2));
+      handleResponse(response);
     })
     .catch(function(err) {
       // handle error
