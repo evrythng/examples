@@ -87,7 +87,7 @@ end
 
 # First argument to this program is number of records to generate
 def product_count 
-  ARGV.first.to_i + 1
+  ARGV.first.to_i
 end
 
 puts products_xml(product_generator().take(product_count))

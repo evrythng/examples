@@ -23,7 +23,6 @@ public class XMLProductsLoaderPipeline extends RouteBuilder implements Runnable 
 
     @Override
     public void configure() throws Exception {
-
         from("file:src/data")
                 .choice()
                     .when(xpath("namespace-uri(/*) = 'http://schema.org/Product'"))
@@ -39,7 +38,10 @@ public class XMLProductsLoaderPipeline extends RouteBuilder implements Runnable 
                 .process(new UnreliableProductLoader())
                 .errorHandler(deadLetterChannel("seda:errors"));
         from("seda:errors")
-                .log("Error!");
+                .log("ERROR uploading Product to EVT");
+        from("seda:xml-validation")
+                .to("validator:/org/schema/gs1.products.xsd");
+//                .onException(org.xml.sax.SAXParseException.class);
     }
 
     @Override

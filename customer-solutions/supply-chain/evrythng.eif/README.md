@@ -4,6 +4,20 @@ Reference implementation.
 
 See [evrythng/examples](https://github.com/evrythng/examples/tree/master/customer-solutions/supply-chain)
 
+# Pipelines
+
+## GS1 XML Product Loader
+
+See [XMLProductsLoaderPipeline.java](src/main/java/com/evrythng/demo/supplychain/XMLProductsLoaderPipeline.java). This pipeline:
+
+1. reads a products.xml file dropped in [src/data](src/data) folder
+2. converts GS1 Product to EVT Product - [ProductProcessor.java](src/main/java/com/evrythng/demo/supplychain/products/ProductProcessor.java)
+3. attempts to load the products into EVT using the `UnreliableProductLoader`
+4. products that fail to load are put in the retry queue
+
+The pipeline loads products in parallel by specifying multiple consumers of the products queue `seda://products-xml?concurrentConsumers=4`
+
+
 # Local install
 
 When running locally:
@@ -50,3 +64,4 @@ Once the pipeline is running (see above) you can generate and load products with
 Or generate products to a new file:
 
     ./gen_products.sh 1000 > /tmp/products.xml
+
