@@ -9,10 +9,11 @@ import org.schema.Products;
 /**
  * Apache Camel Pipeline that reads GS1 Products XML file and
  * loads them as EVT Products.
+ *
+ * TODO convert EVT SDK into endpoint
+ *      protect with throttling http://camel.apache.org/throttler.html
  */
 public class XMLProductsLoaderPipeline extends RouteBuilder implements Runnable {
-
-    public static final int REQUESTS_PER_SECOND = 30;
 
     /* Fan out with <code>seda:queue?concurrentConsumers=x</code> */
     private static final int WRITER_THREADS = 4;
