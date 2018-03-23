@@ -1,7 +1,4 @@
-// Samples
-
-// The is the App API Key, that is used in client Apps to authenticate a user, and have access
-// to scanning Codes
+// Sample
 
 //Globals
 
@@ -22,20 +19,19 @@ const tagRecognitionMethod = "2d"; // QR Code or Data Matrix Code
 const scanSuccessAction = "_ScanFound";
 const scanFailAction = "_ScanNotRecognized";
 
-// API Responses
-let apiResponses = [];
-
-// context
+// Setup
 const EVTSetup = () => {
   EVT.setup({
-    apiUrl: evtApiUrl
+    apiUrl: evtApiUrl,
+    geolocation: true //enable html5 geolocation services
   });
-  // include evrythng Scan SubModule
+  // include evrythng scan module
   EVT.use(EVT.Scan);
   // Instantiate app Context
   app = new EVT.App(evtAppKey);
 };
 
+// log messages to console and screen
 const logMsg = (msg) => {
   console.log(msg);
   $(".api-response").append($("<li class = \"list-group-item\" >" + msg + "</li>"));
@@ -85,15 +81,14 @@ const foundThngId = scanResp => {
 
 // Add Action To Platform
 const addAction = (actionType, tag, scanResp) => {
-  // set action Data
   logMsg(`ADDING ACTION TYPE : ${actionType}`);
+  // set action Data
   let action = {
     type: actionType,
     tags: [tag]
   };
 
-  // shced response to Scan and update Action as needed
-
+  // add product or thng to action
   if (productFound(scanResp)) {
     action.product = foundProductId(scanResp);
     logMsg("ADD ACTION TO PRODUCT");
@@ -101,6 +96,7 @@ const addAction = (actionType, tag, scanResp) => {
     action.thng = foundThngId(scanResp);
     logMsg("ADD ACTION TO THNG");
   }
+  // add the action
   return appUser
     .action(actionType)
     .create(action)
@@ -150,7 +146,7 @@ const scan = () => {
 const setUp = () => {
   // setup EVT
   EVTSetup();
-  // create user
+  // create anonymous user
   anonUser().then(resp => {
     appUser = resp;
   });
