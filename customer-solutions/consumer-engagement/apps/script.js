@@ -14,13 +14,13 @@ let app = {};
 let appUser = {};
 
 // Recognition
-// const tagRecognitionMethod = "2d"; // QR Code or Data Matrix Code
+const tagRecognitionMethod = "2d"; // QR Code or Data Matrix Code
 // const tagRecognitionMethod = "ir"; // Logo / Image Recognition
-const tagRecognitionMethod = "1d"; // 1D barcode
+// const tagRecognitionMethod = "1d"; // 1D barcode
 
 // Actions
-const scanSuccessAction = "_ScanSuccess";
-const scanFailAction = "_ScanFailed";
+const scanSuccessAction = "_ScanFound";
+const scanFailAction = "_ScanNotRecognized";
 
 // API Responses
 let apiResponses = [];
@@ -40,7 +40,7 @@ const EVTSetup = () => {
 
 // Anonymous
 const anonUser = () => {
-  console.log("Creating Anonymous User");
+  console.log("CREATE ANONYMOUS USER");
   return app
     .appUser()
     .create({ anonymous: true })
@@ -48,6 +48,7 @@ const anonUser = () => {
       // can save key details in local storage for subsequent visits
       localStorage.setItem("evt-user", user.id);
       localStorage.setItem("evt-user-key", user.apiKey);
+      console.log("user : " + JSON.stringify(user, null, 2));
       return user;
     });
 };
@@ -55,31 +56,69 @@ const anonUser = () => {
 const namedUser = (id, pwd) => {
   console.log("Add user login here");
 };
+
+// was product returned
+const productFound = scanResp => {
+  return scanResp[0].results[0].hasOwnProperty("product");
+};
+// return product id
+const foundProductId = scanResp => {
+  return scanResp[0].results[0].product.id;
+};
+
+// was thng returned
+const thngFound = scanResp => {
+  return scanResp[0].results[0].hasOwnProperty("thng");
+};
+// return product id
+const foundThngId = scanResp => {
+  return scanResp[0].results[0].thng.id;
+};
+
 // Add Action To Platform
-const addAction = (actionType, tag, msg = {}) => {
+const addAction = (actionType, tag, scanResp) => {
   // set action Data
+  console.log(`ADDING ACTION TYPE : ${actionType}`);
   let action = {
     type: actionType,
-    customFields: { message: msg },
     tags: [tag]
   };
+
+  // shced response to Scan and update Action as needed
+
+  if (productFound(scanResp)) {
+    action.product = foundProductId(scanResp);
+    console.log("ADD ACTION TO PRODUCT");
+  } else if (thngFound(scanResp)) {
+    action.thng = foundThngId(scanResp);
+    console.log("ADD ACTION TO THNG");
+  }
+  return appUser
+    .action(actionType)
+    .create(action)
+    .then(action => {
+      console.log("Action Added : " + JSON.stringify(action, null, 2));
+    });
 };
 
 const handleResponse = resp => {
   if (resp.length === 0) {
-    console.log("Item not Found");
+    console.log("ITEM NOT FOUND");
+    // item not found, add unsuccessful Action, type of scan, and response
+    addAction(scanFailAction, tagRecognitionMethod, resp);
   } else {
-    console.log("Result " + JSON.stringify(resp[0].results, null, 2));
+    console.log("ITEM FOUND");
     // item found add scan action
+    addAction(scanSuccessAction, tagRecognitionMethod, resp);
   }
 };
 
 const handleError = err => {
-  console.log("Error : ");
+  console.log("ERROR : " + JSON.stringify(err, null, 2));
 };
 
 const scan = () => {
-  console.log("Scanning Code");
+  console.log("START SCAN");
   // scan settings
   EVT.Scan.setup({
     filter: {
@@ -90,20 +129,15 @@ const scan = () => {
   app
     .scan()
     .then(function(response) {
-      console.log("response : " + JSON.stringify(response, null, 2));
+      console.log("Scan Response : " + JSON.stringify(response, null, 2));
       handleResponse(response);
     })
     .catch(function(err) {
       // handle error
-      console.log(err);
+      console.error(err);
       handleError(err);
     });
 };
-
-const error = err => {
-  console.Error(err);
-};
-
 // setup
 const setUp = () => {
   // setup EVT

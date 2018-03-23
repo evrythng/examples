@@ -2,15 +2,16 @@
 // Operator API Key
 const OPERATOR_API_KEY = "";
 // API Server
-const SERVER = "http://api-eu.evrythng.com";
+const API_URL = "http://api.evrythng.com";
 // Action Types JSON File
-const ACTION_TYPES_FILE = require("../../supply-chain/actiontypes/gs1_supply_chain_action_types.json");
+// Use from consumer egnagement or supply chain
+const ACTION_TYPES_FILE = require("../../consumer-engagement/actiontypes/evt_consumer_engagement_action_types.json");
 // Scope to all projects in this account by default
 const SCOPE_TO_ALL = true;
 //evrythng setup
 const EVT = require("evrythng-extended");
 EVT.setup({
-  apiUrl: SERVER
+  apiUrl: API_URL
 });
 const operator = new EVT.Operator(OPERATOR_API_KEY);
 
