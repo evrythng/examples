@@ -10,7 +10,7 @@ const evtAppKey =
 let app = {};
 let appUser = {};
 
-// Recognition
+// SET RECOGNITION TYPE HERE
 const tagRecognitionMethod = "2d"; // QR Code or Data Matrix Code
 // const tagRecognitionMethod = "ir"; // Logo / Image Recognition
 // const tagRecognitionMethod = "1d"; // 1D barcode
@@ -150,6 +150,10 @@ const setUp = () => {
   anonUser().then(resp => {
     appUser = resp;
   });
+  $(".recognition-type").text("Scan Type : " + tagRecognitionMethod);
+
+
+
 };
 
 setUp();
