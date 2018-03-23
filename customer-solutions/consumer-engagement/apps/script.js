@@ -150,6 +150,7 @@ const setUp = () => {
   anonUser().then(resp => {
     appUser = resp;
   });
+  // show scan type on UI
   $(".recognition-type").text("Scan Type : " + tagRecognitionMethod);
 
 
