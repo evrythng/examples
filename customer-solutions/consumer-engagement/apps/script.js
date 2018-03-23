@@ -36,25 +36,33 @@ const EVTSetup = () => {
   app = new EVT.App(evtAppKey);
 };
 
+const logMsg = (msg) => {
+  console.log(msg);
+  $(".api-response").append($("<li class = \"list-group-item\" >" + msg + "</li>"));
+}
+
 // Users
 
 // Anonymous
 const anonUser = () => {
-  console.log("CREATE ANONYMOUS USER");
+
+  logMsg("CREATE ANONYMOUS USER")
   return app
     .appUser()
-    .create({ anonymous: true })
+    .create({
+      anonymous: true
+    })
     .then(user => {
       // can save key details in local storage for subsequent visits
       localStorage.setItem("evt-user", user.id);
       localStorage.setItem("evt-user-key", user.apiKey);
-      console.log("user : " + JSON.stringify(user, null, 2));
+      logMsg(JSON.stringify(user, null, 2))
       return user;
     });
 };
 // Registered
 const namedUser = (id, pwd) => {
-  console.log("Add user login here");
+  logMsg("Add user login here");
 };
 
 // was product returned
@@ -78,7 +86,7 @@ const foundThngId = scanResp => {
 // Add Action To Platform
 const addAction = (actionType, tag, scanResp) => {
   // set action Data
-  console.log(`ADDING ACTION TYPE : ${actionType}`);
+  logMsg(`ADDING ACTION TYPE : ${actionType}`);
   let action = {
     type: actionType,
     tags: [tag]
@@ -88,37 +96,37 @@ const addAction = (actionType, tag, scanResp) => {
 
   if (productFound(scanResp)) {
     action.product = foundProductId(scanResp);
-    console.log("ADD ACTION TO PRODUCT");
+    logMsg("ADD ACTION TO PRODUCT");
   } else if (thngFound(scanResp)) {
     action.thng = foundThngId(scanResp);
-    console.log("ADD ACTION TO THNG");
+    logMsg("ADD ACTION TO THNG");
   }
   return appUser
     .action(actionType)
     .create(action)
     .then(action => {
-      console.log("Action Added : " + JSON.stringify(action, null, 2));
+      logMsg("Action Added : " + JSON.stringify(action, null, 2));
     });
 };
 
 const handleResponse = resp => {
   if (resp.length === 0) {
-    console.log("ITEM NOT FOUND");
+    logMsg("ITEM NOT FOUND");
     // item not found, add unsuccessful Action, type of scan, and response
     addAction(scanFailAction, tagRecognitionMethod, resp);
   } else {
-    console.log("ITEM FOUND");
+    logMsg("ITEM FOUND");
     // item found add scan action
     addAction(scanSuccessAction, tagRecognitionMethod, resp);
   }
 };
 
 const handleError = err => {
-  console.log("ERROR : " + JSON.stringify(err, null, 2));
+  logMsg("ERROR : " + JSON.stringify(err, null, 2));
 };
 
 const scan = () => {
-  console.log("START SCAN");
+  logMsg("START SCAN");
   // scan settings
   EVT.Scan.setup({
     filter: {
@@ -128,11 +136,11 @@ const scan = () => {
   // scan
   app
     .scan()
-    .then(function(response) {
-      console.log("Scan Response : " + JSON.stringify(response, null, 2));
+    .then(function (response) {
+      logMsg("Scan Response : " + JSON.stringify(response, null, 2));
       handleResponse(response);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       // handle error
       console.error(err);
       handleError(err);
