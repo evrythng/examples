@@ -70,7 +70,7 @@ const namedUser = (id, pwd) => {
   logMsg("Add user login here");
 };
 
-// was product returned
+// was product returned when scan was done ?
 const productFound = scanResp => {
   return scanResp[0].results[0].hasOwnProperty("product");
 };
