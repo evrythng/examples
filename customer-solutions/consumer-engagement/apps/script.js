@@ -49,7 +49,7 @@ const logMsg = (msg, state = "info") => {
 
 // Users
 
-// Anonymous
+// Anonymous user creation, could save the details to localstorage to avoid creating a user each time
 const anonUser = () => {
   logMsg("CREATE ANONYMOUS USER");
   return app
@@ -119,7 +119,7 @@ const addAction = (actionType, tag, scanResp, found) => {
       logMsg("Action Added : " + JSON.stringify(action, null, 2));
     });
 };
-
+// check scan success
 const scanSuccess = resp => {
   if (resp.length === 0) {
     return false;
@@ -127,7 +127,7 @@ const scanSuccess = resp => {
     return resp[0].results.length > 0;
   }
 };
-
+// handle response for items found / not found
 const handleResponse = resp => {
   if (scanSuccess(resp)) {
     logMsg("ITEM FOUND");
@@ -137,11 +137,11 @@ const handleResponse = resp => {
     addAction(scanFailAction, tagRecognitionMethod, resp, false);
   }
 };
-
+// handle errors
 const handleError = err => {
   logMsg("ERROR : " + err);
 };
-
+// do the scan
 const scan = () => {
   logMsg("START SCAN");
   // scan settings
@@ -163,7 +163,7 @@ const scan = () => {
       handleError(err);
     });
 };
-// setup
+// set up EVT , and create an app user.
 const setUp = () => {
   // setup EVT
   EVTSetup();
