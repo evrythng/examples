@@ -11,3 +11,5 @@ apps : Sample Mobile Web App for :
     Data Matrix Code scanning
     Bar Code Scanning
     Image Recognition
+
+Available here in codepen : https://codepen.io/dibster/pen/MVoRzv?editors=1010 or run locally (eg http-server)

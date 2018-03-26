@@ -11,8 +11,8 @@ let app = {};
 let appUser = {};
 
 // SET RECOGNITION TYPE HERE
-const tagRecognitionMethod = "2d"; // QR Code or Data Matrix Code
-// const tagRecognitionMethod = "ir"; // Logo / Image Recognition
+// const tagRecognitionMethod = "2d"; // QR Code or Data Matrix Code
+const tagRecognitionMethod = "ir"; // Logo / Image Recognition
 // const tagRecognitionMethod = "1d"; // 1D barcode
 
 // Actions
@@ -32,17 +32,26 @@ const EVTSetup = () => {
 };
 
 // log messages to console and screen
-const logMsg = (msg) => {
+const logMsg = (msg, state = "info") => {
   console.log(msg);
-  $(".api-response").append($("<li class = \"list-group-item\" >" + msg + "</li>"));
-}
+  if (state === "error") {
+    $(".api-response").append(
+      $(
+        '<li class = "list-group-item list-group-item-danger" >' + msg + "</li>"
+      )
+    );
+  } else {
+    $(".api-response").append(
+      $('<li class = "list-group-item" >' + msg + "</li>")
+    );
+  }
+};
 
 // Users
 
 // Anonymous
 const anonUser = () => {
-
-  logMsg("CREATE ANONYMOUS USER")
+  logMsg("CREATE ANONYMOUS USER");
   return app
     .appUser()
     .create({
@@ -52,7 +61,7 @@ const anonUser = () => {
       // can save key details in local storage for subsequent visits
       localStorage.setItem("evt-user", user.id);
       localStorage.setItem("evt-user-key", user.apiKey);
-      logMsg(JSON.stringify(user, null, 2))
+      logMsg(JSON.stringify(user, null, 2));
       return user;
     });
 };
@@ -80,7 +89,7 @@ const foundThngId = scanResp => {
 };
 
 // Add Action To Platform
-const addAction = (actionType, tag, scanResp) => {
+const addAction = (actionType, tag, scanResp, found) => {
   logMsg(`ADDING ACTION TYPE : ${actionType}`);
   // set action Data
   let action = {
@@ -89,12 +98,18 @@ const addAction = (actionType, tag, scanResp) => {
   };
 
   // add product or thng to action
-  if (productFound(scanResp)) {
-    action.product = foundProductId(scanResp);
-    logMsg("ADD ACTION TO PRODUCT");
-  } else if (thngFound(scanResp)) {
-    action.thng = foundThngId(scanResp);
-    logMsg("ADD ACTION TO THNG");
+  if (found) {
+    if (productFound(scanResp)) {
+      action.product = foundProductId(scanResp);
+      logMsg("ADD ACTION TO PRODUCT");
+    } else if (thngFound(scanResp)) {
+      action.thng = foundThngId(scanResp);
+      logMsg("ADD ACTION TO THNG");
+    }
+  } else {
+    // when not found save response to Action
+    action.customFields = {};
+    action.customFields.resp = scanResp;
   }
   // add the action
   return appUser
@@ -105,20 +120,26 @@ const addAction = (actionType, tag, scanResp) => {
     });
 };
 
-const handleResponse = resp => {
+const scanSuccess = resp => {
   if (resp.length === 0) {
-    logMsg("ITEM NOT FOUND");
-    // item not found, add unsuccessful Action, type of scan, and response
-    addAction(scanFailAction, tagRecognitionMethod, resp);
+    return false;
   } else {
+    return resp[0].results.length > 0;
+  }
+};
+
+const handleResponse = resp => {
+  if (scanSuccess(resp)) {
     logMsg("ITEM FOUND");
-    // item found add scan action
-    addAction(scanSuccessAction, tagRecognitionMethod, resp);
+    addAction(scanSuccessAction, tagRecognitionMethod, resp, true);
+  } else {
+    logMsg("ITEM NOT FOUND", "error");
+    addAction(scanFailAction, tagRecognitionMethod, resp, false);
   }
 };
 
 const handleError = err => {
-  logMsg("ERROR : " + JSON.stringify(err, null, 2));
+  logMsg("ERROR : " + err);
 };
 
 const scan = () => {
@@ -132,11 +153,11 @@ const scan = () => {
   // scan
   app
     .scan()
-    .then(function (response) {
-      logMsg("Scan Response : " + JSON.stringify(response, null, 2));
-      handleResponse(response);
+    .then(function(resp) {
+      logMsg("Scan Response : " + JSON.stringify(resp, null, 2));
+      handleResponse(resp);
     })
-    .catch(function (err) {
+    .catch(function(err) {
       // handle error
       console.error(err);
       handleError(err);
@@ -152,9 +173,6 @@ const setUp = () => {
   });
   // show scan type on UI
   $(".recognition-type").text("Scan Type : " + tagRecognitionMethod);
-
-
-
 };
 
 setUp();
