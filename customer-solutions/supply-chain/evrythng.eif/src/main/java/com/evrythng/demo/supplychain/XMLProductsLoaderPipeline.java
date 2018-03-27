@@ -1,5 +1,6 @@
 package com.evrythng.demo.supplychain;
 
+import com.evrythng.demo.mq.MQBroker;
 import com.evrythng.demo.supplychain.products.ProductProcessor;
 import com.evrythng.demo.supplychain.products.UnreliableProductLoader;
 import org.apache.camel.builder.RouteBuilder;
@@ -26,20 +27,26 @@ public class XMLProductsLoaderPipeline extends RouteBuilder implements Runnable 
     public void configure() throws Exception {
         from("file:src/data")
                 .choice()
-                    .when(xpath("namespace-uri(/*) = 'http://schema.org/Product'"))
+                    .when(xpath(String.format("namespace-uri(/*) = '%s'", Products.ns)))
                         .log("Received XML file containing Products")
-                        .split(Products.ns.xpath(Products.XPATH_PRODUCTS))
+                        .split(Products.namespaces.xpath(Products.XPATH_PRODUCTS))
                         .unmarshal().jaxb(Products.CONTEXT_PATH)
-                        .to(productsXMLQueue)
+                        .to("activemq:products")
                         .endChoice()
                     .otherwise()
                         .log("Ignoring file");
+        from("activemq:products")
+                .throttle(30)
+                .asyncDelayed()
+                .to(productsXMLQueue);
         from(productsXMLQueueConsumer)
                 .process(new ProductProcessor())
                 .process(new UnreliableProductLoader())
-                .errorHandler(deadLetterChannel("seda:errors"));
-        from("seda:errors")
-                .log("ERROR uploading Product to EVT");
+                .errorHandler(deadLetterChannel("activemq:com.evrythng.retry"));
+        from("activemq:com.evrythng.retry")
+                .log("ERROR uploading Product to EVT")
+                .delayer(4 * 1000)
+                .to(productsXMLQueue);
         from("seda:xml-validation")
                 .to("validator:/org/schema/gs1.products.xsd");
 //                .onException(org.xml.sax.SAXParseException.class);
@@ -47,6 +54,11 @@ public class XMLProductsLoaderPipeline extends RouteBuilder implements Runnable 
 
     @Override
     public void run() {
+        startMQBroker();
+        startPipeline();
+    }
+
+    private void startPipeline() {
         Main main = new Main();
         main.addRouteBuilder(new XMLProductsLoaderPipeline());
         try {
@@ -54,6 +66,10 @@ public class XMLProductsLoaderPipeline extends RouteBuilder implements Runnable 
         } catch (Exception e) {
             throw new RuntimeException(e.getMessage(), e);
         }
+    }
+
+    private void startMQBroker() {
+        new Thread(new MQBroker()).start();
     }
 
     public static void main(String[] args) {
