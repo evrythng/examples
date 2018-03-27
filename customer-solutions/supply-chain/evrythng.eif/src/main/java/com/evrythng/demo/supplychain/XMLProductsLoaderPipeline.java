@@ -7,21 +7,21 @@ import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.main.Main;
 import org.schema.Products;
 
+import java.time.Duration;
+
 /**
  * Apache Camel Pipeline that reads GS1 Products XML file and
  * loads them as EVT Products.
- *
- * TODO convert EVT SDK into endpoint
- *      protect with throttling http://camel.apache.org/throttler.html
  */
 public class XMLProductsLoaderPipeline extends RouteBuilder implements Runnable {
 
-    /* Fan out with <code>seda:queue?concurrentConsumers=x</code> */
+    /* Number of EVRYTHNG writers */
     private static final int WRITER_THREADS = 4;
 
-    private static final String queueType        = "seda";
+    private static final String queueType        = "activemq"; // [activemq|seda|sqs]
     private static final String productsXMLQueue = String.format("%s:%s", queueType, "products-xml");
-    private static final String productsXMLQueueConsumer = String.format("%s?concurrentConsumers=%d", productsXMLQueue, WRITER_THREADS);
+    private static final String productsQueue    = String.format("%s:%s", queueType, "products");
+    private static final String retryQueue       = String.format("%s:%s", queueType, "retry-products");
 
     @Override
     public void configure() throws Exception {
@@ -31,26 +31,35 @@ public class XMLProductsLoaderPipeline extends RouteBuilder implements Runnable 
                         .log("Received XML file containing Products")
                         .split(Products.namespaces.xpath(Products.XPATH_PRODUCTS))
                         .unmarshal().jaxb(Products.CONTEXT_PATH)
-                        .to("activemq:products")
+                        .to(productsXMLQueue)
                         .endChoice()
                     .otherwise()
                         .log("Ignoring file");
-        from("activemq:products")
+
+        // Transform GS1 Product to EVT Product, and throttle to 30 rps
+        from(productsXMLQueue)
+                .process(new ProductProcessor())
                 .throttle(30)
                 .asyncDelayed()
-                .to(productsXMLQueue);
-        from(productsXMLQueueConsumer)
-                .process(new ProductProcessor())
+                .to(productsQueue);
+
+        // Load
+        from(fanOut(productsQueue, WRITER_THREADS))
                 .process(new UnreliableProductLoader())
-                .errorHandler(deadLetterChannel("activemq:com.evrythng.retry"));
-        from("activemq:com.evrythng.retry")
-                .log("ERROR uploading Product to EVT")
-                .delayer(4 * 1000)
-                .to(productsXMLQueue);
+                .errorHandler(deadLetterChannel(retryQueue));
+
+        // If any uploads fail, wait 2 seconds and send the message back to the loader
+        from(fanOut(retryQueue))
+                .log("RETRY")
+                .delayer(Duration.ofSeconds(2).toMillis())
+                .to(productsQueue);
+
         from("seda:xml-validation")
                 .to("validator:/org/schema/gs1.products.xsd");
 //                .onException(org.xml.sax.SAXParseException.class);
     }
+
+    // Runner
 
     @Override
     public void run() {
@@ -75,4 +84,22 @@ public class XMLProductsLoaderPipeline extends RouteBuilder implements Runnable 
     public static void main(String[] args) {
         new XMLProductsLoaderPipeline().run();
     }
+
+    // Fan out
+
+    // Run pipeline stage on all available cores
+    private static String fanOut(String queue) {
+        return fanOut(queue, threadCount());
+    }
+
+    private static String fanOut(String queue, int threads) {
+        return String.format("%s?concurrentConsumers=%d", queue, threads);
+    }
+
+    // Number of cores available at runtime (between 4 and 32)
+    private static int threadCount() {
+        int p = Runtime.getRuntime().availableProcessors() * 2;
+        return Math.max(1, Math.min(p, 32));
+    }
+
 }

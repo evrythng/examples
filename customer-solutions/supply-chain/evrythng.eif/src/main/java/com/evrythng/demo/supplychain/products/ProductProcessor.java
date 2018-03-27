@@ -16,14 +16,14 @@ import java.util.Optional;
 public class ProductProcessor implements Processor {
     @Override
     public void process(Exchange exchange) throws Exception {
-        Optional<org.schema.Product> skuInfo = Optional.ofNullable(exchange.getIn().getBody(org.schema.Product.class));
-        if (skuInfo.isPresent()) {
+        Optional<org.schema.Product> product = Optional.ofNullable(exchange.getIn().getBody(org.schema.Product.class));
+        if (product.isPresent()) {
             TransformGS1ProductToEVTProduct transformProduct = new TransformGS1ProductToEVTProduct();
             Message message = new DefaultMessage();
-            message.setBody(transformProduct.convert(skuInfo.get()));
+            message.setBody(transformProduct.convert(product.get()));
             exchange.setOut(message);
         } else {
-            throw new IllegalArgumentException("Not a SKU");
+            throw new IllegalArgumentException("Product missing in Exchange!");
         }
     }
 

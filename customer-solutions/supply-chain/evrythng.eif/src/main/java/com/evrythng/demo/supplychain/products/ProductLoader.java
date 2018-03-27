@@ -20,13 +20,19 @@ public class ProductLoader implements Processor {
 
     @Override
     public void process(Exchange exchange) throws Exception {
-        Product product = exchange.getIn().getMandatoryBody(Product.class);
-        product = productService.productCreator(product).execute();
-        // TODO wrap in Circuit breaker
-        logger.info(new JSONObject()
-                .put("evt_id", product.getId())
-                .put("identifiers", product.getIdentifiers()).toString());
+        try {
+            Product product = exchange.getIn().getMandatoryBody(Product.class);
+            product = productService.productCreator(product).execute();
+            // TODO wrap in Circuit breaker
+            logger.info(new JSONObject()
+                    .put("evt_id", product.getId())
+                    .put("identifiers", product.getIdentifiers())
+                    .toString());
+        } catch (Exception e) {
+            logger.error(e.getMessage(), e);
+            throw e;
+        }
     }
 
-    private static Logger logger = LoggerFactory.getLogger("logentries");
+    private static Logger logger = LoggerFactory.getLogger("load");
 }

@@ -7,7 +7,7 @@ import java.security.SecureRandom;
 import java.util.Random;
 
 /**
- * Fails to load products into EVT 50% of the time.
+ * Fails to load products into EVT 25% of the time.
  */
 public class UnreliableProductLoader extends ProductLoader {
 
@@ -22,7 +22,8 @@ public class UnreliableProductLoader extends ProductLoader {
         }
     }
 
+    // 25% chance platform is unavailable
     private boolean platformTemporarilyOverloaded() {
-        return rnd.nextBoolean();
+        return rnd.nextBoolean() && rnd.nextBoolean();
     }
 }
