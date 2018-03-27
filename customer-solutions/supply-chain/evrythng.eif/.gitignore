@@ -1,7 +1,9 @@
 .gradle
 /build/
 /out/
+
 /src/data
+activemq-data/
 
 # Ignore Gradle GUI config
 gradle-app.setting
