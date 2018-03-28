@@ -2,7 +2,6 @@ package com.evrythng.demo.supplychain;
 
 import com.evrythng.demo.mq.MQBroker;
 import com.evrythng.demo.supplychain.products.ProductProcessor;
-import com.evrythng.demo.supplychain.products.UnreliableProductLoader;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.main.Main;
 import org.schema.Products;
@@ -45,7 +44,7 @@ public class XMLProductsLoaderPipeline extends RouteBuilder implements Runnable 
 
         // Load
         from(fanOut(productsQueue, WRITER_THREADS))
-                .process(new UnreliableProductLoader())
+                .to("evrythng:products")
                 .errorHandler(deadLetterChannel(retryQueue));
 
         // If any uploads fail, wait 2 seconds and send the message back to the loader
