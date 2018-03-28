@@ -12,8 +12,8 @@ See [XMLProductsLoaderPipeline.java](src/main/java/com/evrythng/demo/supplychain
 
 1. reads a products.xml file dropped in [src/data](src/data) folder
 2. converts GS1 Product to EVT Product - [ProductProcessor.java](src/main/java/com/evrythng/demo/supplychain/products/ProductProcessor.java)
-3. attempts to load the products into EVT using the `UnreliableProductLoader`
-4. products that fail to load are put in the persisted retry queue
+3. attempts to load the products into EVT using the Evrythng Camel Component
+4. products that fail to load are put in the persisted retry queue and retried after 2 seconds
 
 The pipeline loads products in parallel by specifying multiple consumers of the products queue `seda://products-xml?concurrentConsumers=4`
 
@@ -22,6 +22,27 @@ The pipeline loads products in parallel by specifying multiple consumers of the 
 The pipeline uses persistent [ActiveMQ queues](http://activemq.apache.org/) in order to store the intermediate steps of a messages journey through the pipeline. If you stop the Pipeline during execution and restart it, pending messages from the previous run will complete.
 
 Use the script [clear_queues.sh](clear_queues.sh) to clear out the previous messages.
+
+## Connectivity with EVRYTHNG
+
+We have started the implementation of the [EVRYTHNG Camel Component](http://camel.apache.org/writing-components.html) which is a wrapper around the [EVRYTHNG Java SDK](https://github.com/evrythng/evrythng-java-sdk) - see the `com.evrythng.camel` package. Only creating Products are implemented.
+
+Example - reading Products and writing to EVRYTHNG:
+
+```java
+from("activemq:products")
+  .to("evrythng:products")
+  .errorHandler(deadLetterChannel(retryQueue));
+```
+
+The destination of the EVRYTHNG API is currently controlled with environment variables. It would be possible to extend this to set a dynamic endpoint in the route. For example:
+
+```java
+from("activemq:products")
+  .to("evrythng:TRUSTEDAPPKEY@api-eu.evrythng.com/products")
+```
+
+This would allow us to create a pipeline between different API regions or accounts.
 
 # Local install
 
