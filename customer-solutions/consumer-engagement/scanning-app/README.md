@@ -17,7 +17,7 @@ for more information on scanning products with the EVRYTHNG Platform.
 
 ## Usage
 
-1. Go to the address suggested by `SimpleHTTPServer`, usuallt `0.0.0.0:8000`.
+1. Go to the address suggested by `SimpleHTTPServer`, usually `0.0.0.0:8000`.
 2. Click the button to submit a picture to scan.
 3. Monitor the browser developer tools to see the results.
  
