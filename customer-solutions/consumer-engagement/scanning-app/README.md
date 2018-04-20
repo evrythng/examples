@@ -7,7 +7,7 @@ See the [documentation](https://developers.evrythng.com/reference#identifier-rec
 for more information on scanning products with the EVRYTHNG Platform.
 
 
-## Setup
+## Setup
 
 1. Clone this repository, and `cd` to this directory.
 2. Set the `APPLICATION_API_KEY` value in `script.js` with an Application API 
