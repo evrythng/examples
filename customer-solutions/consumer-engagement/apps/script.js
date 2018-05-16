@@ -12,7 +12,7 @@ let appUser = {};
 
 // SET RECOGNITION TYPE HERE
 // const tagRecognitionMethod = "2d"; // QR Code or Data Matrix Code
-const tagRecognitionMethod = "ir"; // Logo / Image Recognition
+const tagRecognitionMethod = "2d"; // Logo / Image Recognition
 // const tagRecognitionMethod = "1d"; // 1D barcode
 
 // Actions
@@ -101,9 +101,13 @@ const addAction = (actionType, tag, scanResp, found) => {
   if (found) {
     if (productFound(scanResp)) {
       action.product = foundProductId(scanResp);
+      localStorage.setItem("evt-last-scan-id", action.product);
+      localStorage.setItem("evt-last-scan-resource", "product");
       logMsg("ADD ACTION TO PRODUCT");
     } else if (thngFound(scanResp)) {
       action.thng = foundThngId(scanResp);
+      localStorage.setItem("evt-last-scan-id", action.thng);
+      localStorage.setItem("evt-last-scan-resource", "thng");
       logMsg("ADD ACTION TO THNG");
     }
   } else {
@@ -111,6 +115,7 @@ const addAction = (actionType, tag, scanResp, found) => {
     action.customFields = {};
     action.customFields.resp = scanResp;
   }
+
   // add the action
   return appUser
     .action(actionType)
@@ -141,7 +146,7 @@ const handleResponse = resp => {
 const handleError = err => {
   logMsg("ERROR : " + err);
 };
-// do the scan
+// do a scan
 const scan = () => {
   logMsg("START SCAN");
   // scan settings
@@ -161,6 +166,43 @@ const scan = () => {
       // handle error
       console.error(err);
       handleError(err);
+    });
+};
+
+// get user from local storage
+const getCurrentUser = () => {
+  return new EVT.User(
+    {
+      id: localStorage["evt-user"],
+      apiKey: localStorage["evt-user-key"]
+    },
+    app
+  );
+};
+// add Example Action
+const addExampleAction = () => {
+  logMsg("START ADDING ACTION");
+  // action Type, registered
+  const ACTION_TYPE = "_Registered";
+  // get current user from localstorage
+  let appUser = getCurrentUser();
+  // set Action data
+  let action = {};
+  action.type = ACTION_TYPE;
+
+  if (localStorage["evt-last-scan-resource"] === "product") {
+    action.product = localStorage["evt-last-scan-id"];
+    logMsg("ADD ACTION TO PRODUCT");
+  } else {
+    action.thng = localStorage["evt-last-scan-id"];
+    logMsg("ADD ACTION TO THNG");
+  }
+  // add the action
+  return appUser
+    .action(action.type)
+    .create(action)
+    .then(action => {
+      logMsg("Action Added : " + JSON.stringify(action, null, 2));
     });
 };
 // set up EVT , and create an app user.
