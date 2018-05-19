@@ -1,7 +1,3 @@
-// Sample
-
-//Globals
-
 // US East Account
 const evtApiUrl = "https://api.evrythng.com";
 // create app withApplication API Key. Not the Trusted API Key
@@ -47,9 +43,7 @@ const logMsg = (msg, state = "info") => {
   }
 };
 
-// Users
-
-// Anonymous user creation, could save the details to localstorage to avoid creating a user each time
+// Anonymous user creation
 const anonUser = () => {
   logMsg("CREATE ANONYMOUS USER");
   return app
@@ -58,16 +52,12 @@ const anonUser = () => {
       anonymous: true
     })
     .then(user => {
-      // can save key details in local storage for subsequent visits
+      // save user id and key to local storage
       localStorage.setItem("evt-user", user.id);
       localStorage.setItem("evt-user-key", user.apiKey);
       logMsg(JSON.stringify(user, null, 2));
       return user;
     });
-};
-// Registered
-const namedUser = (id, pwd) => {
-  logMsg("Add user login here");
 };
 
 // was product returned when scan was done ?
@@ -79,7 +69,7 @@ const foundProductId = scanResp => {
   return scanResp[0].results[0].product.id;
 };
 
-// was thng returned
+// was thng returned when scan was done ?
 const thngFound = scanResp => {
   return scanResp[0].results[0].hasOwnProperty("thng");
 };
@@ -88,7 +78,13 @@ const foundThngId = scanResp => {
   return scanResp[0].results[0].thng.id;
 };
 
-// Add Action To Platform
+// 
+const saveDetectedItemToLocalStorage = (resourceId, type) => {
+  localStorage.setItem("evt-last-scan-id", resourceId);
+  localStorage.setItem("evt-last-scan-resource", type);
+}
+
+// Add Action 
 const addAction = (actionType, tag, scanResp, found) => {
   logMsg(`ADDING ACTION TYPE : ${actionType}`);
   // set action Data
@@ -96,18 +92,16 @@ const addAction = (actionType, tag, scanResp, found) => {
     type: actionType,
     tags: [tag]
   };
-
   // add product or thng to action
   if (found) {
     if (productFound(scanResp)) {
       action.product = foundProductId(scanResp);
-      localStorage.setItem("evt-last-scan-id", action.product);
-      localStorage.setItem("evt-last-scan-resource", "product");
+      // save id of last scanned 
+      saveDetectedItemToLocalStorage(action.product, 'product')
       logMsg("ADD ACTION TO PRODUCT");
     } else if (thngFound(scanResp)) {
       action.thng = foundThngId(scanResp);
-      localStorage.setItem("evt-last-scan-id", action.thng);
-      localStorage.setItem("evt-last-scan-resource", "thng");
+      saveDetectedItemToLocalStorage(action.thng, 'thng')
       logMsg("ADD ACTION TO THNG");
     }
   } else {
@@ -115,7 +109,6 @@ const addAction = (actionType, tag, scanResp, found) => {
     action.customFields = {};
     action.customFields.resp = scanResp;
   }
-
   // add the action
   return appUser
     .action(actionType)
@@ -146,7 +139,8 @@ const handleResponse = resp => {
 const handleError = err => {
   logMsg("ERROR : " + err);
 };
-// do a scan
+
+// do a scan, called from page
 const scan = () => {
   logMsg("START SCAN");
   // scan settings
@@ -155,14 +149,14 @@ const scan = () => {
       method: tagRecognitionMethod
     }
   });
-  // scan
+  // perform scan
   app
     .scan()
-    .then(function(resp) {
+    .then(function (resp) {
       logMsg("Scan Response : " + JSON.stringify(resp, null, 2));
       handleResponse(resp);
     })
-    .catch(function(err) {
+    .catch(function (err) {
       // handle error
       console.error(err);
       handleError(err);
@@ -171,8 +165,7 @@ const scan = () => {
 
 // get user from local storage
 const getCurrentUser = () => {
-  return new EVT.User(
-    {
+  return new EVT.User({
       id: localStorage["evt-user"],
       apiKey: localStorage["evt-user-key"]
     },
@@ -181,15 +174,10 @@ const getCurrentUser = () => {
 };
 // add Example Action
 const addExampleAction = () => {
-  logMsg("START ADDING ACTION");
-  // action Type, registered
-  const ACTION_TYPE = "_Registered";
-  // get current user from localstorage
-  let appUser = getCurrentUser();
+  logMsg("START ADDING REGISTRATION ACTION");
   // set Action data
   let action = {};
-  action.type = ACTION_TYPE;
-
+  action.type = "_Registered";
   if (localStorage["evt-last-scan-resource"] === "product") {
     action.product = localStorage["evt-last-scan-id"];
     logMsg("ADD ACTION TO PRODUCT");
@@ -197,6 +185,8 @@ const addExampleAction = () => {
     action.thng = localStorage["evt-last-scan-id"];
     logMsg("ADD ACTION TO THNG");
   }
+  // get current user from localstorage
+  let appUser = getCurrentUser();
   // add the action
   return appUser
     .action(action.type)
