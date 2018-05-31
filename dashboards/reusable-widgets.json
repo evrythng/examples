@@ -1,0 +1,825 @@
+{
+  "title": "Reusable Widgets",
+  "slug": "reusable-widgets",
+  "toolbar": {
+    "name": "evtx-filter-toolbar"
+  },
+  "bundles": [],
+  "sections": [
+    {
+      "type": "grid",
+      "name": "Overview",
+      "widgets": [
+        {
+          "name": "evtx-overview-totals",
+          "config": {
+            "title": {
+              "required": true,
+              "value": "Project Details"
+            },
+            "description": {
+              "value": "Breakdown of entities and attributes for all projects"
+            },
+            "position": {
+              "value": {
+                "row": 0,
+                "col": 0,
+                "sizeY": 2,
+                "sizeX": 3
+              }
+            }
+          }
+        }
+      ],
+      "visibleWidgets": [
+        {
+          "name": "evtx-overview-totals",
+          "config": {
+            "title": {
+              "required": true,
+              "value": "Project Details"
+            },
+            "description": {
+              "value": "Breakdown of entities and attributes for all projects"
+            },
+            "position": {
+              "value": {
+                "row": 0,
+                "col": 0,
+                "sizeY": 2,
+                "sizeX": 3
+              }
+            }
+          }
+        }
+      ]
+    },
+    {
+      "type": "grid",
+      "name": "Widgets",
+      "widgets": [
+        {
+          "name": "evtx-actions-by-country",
+          "config": {
+            "title": {
+              "value": "Actions by country",
+              "required": true
+            },
+            "description": {
+              "value": "Number of actions performed per country"
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": true
+            },
+            "actionTypes": {
+              "editor": "evt-widget-config-action-types",
+              "value": []
+            },
+            "countries": {
+              "editor": "evt-widget-config-countries",
+              "value": []
+            },
+            "position": {
+              "value": {
+                "row": 0,
+                "col": 0
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-product-count",
+          "config": {
+            "title": {
+              "value": "Active Products Count",
+              "required": true
+            },
+            "description": {
+              "value": "Most active products"
+            },
+            "chartType": {
+              "editor": "evt-widget-config-select",
+              "displayName": "Chart Type",
+              "value": "donut",
+              "values": [
+                {
+                  "value": "donut",
+                  "display": "Donut"
+                },
+                {
+                  "value": "treemap",
+                  "display": "Treemap"
+                }
+              ]
+            },
+            "products": {
+              "editor": "evt-widget-config-products",
+              "value": []
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": true
+            },
+            "position": {
+              "value": {
+                "row": 5,
+                "col": 0,
+                "sizeX": 2
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-action-funnel",
+          "config": {
+            "title": {
+              "value": "Action Funnel",
+              "required": true
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": true
+            },
+            "actionTypes": {
+              "editor": "evt-widget-config-action-types",
+              "value": []
+            },
+            "position": {
+              "value": {
+                "row": 0,
+                "col": 2,
+                "sizeX": 1
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-overview-user-actions",
+          "config": {
+            "chartType": {
+              "values": [
+                {
+                  "display": "Donut",
+                  "value": "donut"
+                },
+                {
+                  "display": "Treemap",
+                  "value": "treemap"
+                }
+              ],
+              "value": "treemap",
+              "displayName": "Chart Type",
+              "editor": "evt-widget-config-select"
+            },
+            "position": {
+              "value": {
+                "sizeX": 1,
+                "sizeY": 1,
+                "row": 3,
+                "col": 2
+              }
+            },
+            "title": {
+              "required": true,
+              "value": "User Actions"
+            },
+            "description": {
+              "value": "Number of actions per active user"
+            }
+          }
+        },
+        {
+          "name": "evtx-overview-user-types",
+          "config": {
+            "position": {
+              "value": {
+                "sizeX": 1,
+                "sizeY": 1,
+                "row": 4,
+                "col": 2
+              }
+            },
+            "title": {
+              "value": "User Type",
+              "required": true
+            },
+            "description": {
+              "value": "Breakdown of new vs returning user"
+            }
+          }
+        },
+        {
+          "name": "evtx-overview-locations",
+          "config": {
+            "chartType": {
+              "values": [
+                {
+                  "display": "Donut",
+                  "value": "donut"
+                },
+                {
+                  "display": "Treemap",
+                  "value": "treemap"
+                }
+              ],
+              "value": "donut",
+              "displayName": "Chart Type",
+              "editor": "evt-widget-config-select"
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": true
+            },
+            "title": {
+              "required": true,
+              "value": "Most active locations"
+            },
+            "description": {
+              "required": false,
+              "value": "Breakdown of activity per market or city"
+            },
+            "position": {
+              "value": {
+                "row": 2,
+                "col": 0,
+                "sizeX": 2
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-overview-products",
+          "config": {
+            "chartType": {
+              "values": [
+                {
+                  "display": "Bar",
+                  "value": "bar"
+                },
+                {
+                  "display": "Line",
+                  "value": "line"
+                }
+              ],
+              "value": "line",
+              "displayName": "Chart Type",
+              "editor": "evt-widget-config-select"
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": true
+            },
+            "title": {
+              "required": true,
+              "value": "Active Products"
+            },
+            "description": {
+              "required": false,
+              "value": "Breakdown of activity per product"
+            },
+            "products": {
+              "editor": "evt-widget-config-products",
+              "value": []
+            },
+            "position": {
+              "value": {
+                "row": 6,
+                "col": 0,
+                "sizeX": 2,
+                "sizeY": 1
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-overview-interactions",
+          "config": {
+            "chartType": {
+              "values": [
+                {
+                  "display": "Donut",
+                  "value": "donut"
+                },
+                {
+                  "display": "Treemap",
+                  "value": "treemap"
+                }
+              ],
+              "value": "donut",
+              "displayName": "Chart Type",
+              "editor": "evt-widget-config-select"
+            },
+            "title": {
+              "required": true,
+              "value": "Interactions"
+            },
+            "description": {
+              "value": "Breakdown of total number of actions performed"
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": false
+            },
+            "actionTypes": {
+              "editor": "evt-widget-config-action-types",
+              "value": []
+            },
+            "position": {
+              "value": {
+                "row": 1,
+                "col": 0,
+                "sizeX": 2,
+                "sizeY": 1
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-overview-engagement",
+          "config": {
+            "chartType": {
+              "values": [
+                {
+                  "display": "Bar",
+                  "value": "bar"
+                },
+                {
+                  "display": "Line",
+                  "value": "line"
+                }
+              ],
+              "value": "bar",
+              "displayName": "Chart Type",
+              "editor": "evt-widget-config-select"
+            },
+            "title": {
+              "required": true,
+              "value": "Engagement"
+            },
+            "description": {
+              "value": "Daily Actions per Action Type"
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": false
+            },
+            "actionTypes": {
+              "editor": "evt-widget-config-action-types",
+              "value": []
+            },
+            "position": {
+              "value": {
+                "row": 4,
+                "col": 0,
+                "sizeX": 2
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-action-list",
+          "config": {
+            "position": {
+              "value": {
+                "sizeX": 1,
+                "sizeY": 2,
+                "row": 1,
+                "col": 2
+              }
+            },
+            "showLocation": {
+              "value": true,
+              "displayName": "components.actions.config.showLocation",
+              "editor": "evt-widget-config-boolean"
+            },
+            "actionTypes": {
+              "value": [],
+              "editor": "evt-widget-config-action-types"
+            },
+            "description": {
+              "value": "Filterable actions list"
+            },
+            "title": {
+              "required": true,
+              "value": "Actions"
+            }
+          }
+        },
+        {
+          "name": "evtx-action-map",
+          "config": {
+            "position": {
+              "value": {
+                "row": 3,
+                "col": 0,
+                "sizeY": 1,
+                "sizeX": 2
+              }
+            },
+            "actionTypes": {
+              "value": [],
+              "editor": "evt-widget-config-action-types"
+            },
+            "description": {
+              "value": "Geographic locations of actions performed"
+            },
+            "title": {
+              "required": true,
+              "value": "Actions Map"
+            }
+          }
+        }
+      ],
+      "visibleWidgets": [
+        {
+          "name": "evtx-actions-by-country",
+          "config": {
+            "title": {
+              "value": "Actions by country",
+              "required": true
+            },
+            "description": {
+              "value": "Number of actions performed per country"
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": true
+            },
+            "actionTypes": {
+              "editor": "evt-widget-config-action-types",
+              "value": []
+            },
+            "countries": {
+              "editor": "evt-widget-config-countries",
+              "value": []
+            },
+            "position": {
+              "value": {
+                "row": 0,
+                "col": 0
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-product-count",
+          "config": {
+            "title": {
+              "value": "Active Products Count",
+              "required": true
+            },
+            "description": {
+              "value": "Most active products"
+            },
+            "chartType": {
+              "editor": "evt-widget-config-select",
+              "displayName": "Chart Type",
+              "value": "donut",
+              "values": [
+                {
+                  "value": "donut",
+                  "display": "Donut"
+                },
+                {
+                  "value": "treemap",
+                  "display": "Treemap"
+                }
+              ]
+            },
+            "products": {
+              "editor": "evt-widget-config-products",
+              "value": []
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": true
+            },
+            "position": {
+              "value": {
+                "row": 5,
+                "col": 0,
+                "sizeX": 2
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-action-funnel",
+          "config": {
+            "title": {
+              "value": "Action Funnel",
+              "required": true
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": true
+            },
+            "actionTypes": {
+              "editor": "evt-widget-config-action-types",
+              "value": []
+            },
+            "position": {
+              "value": {
+                "row": 0,
+                "col": 2,
+                "sizeX": 1
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-overview-user-actions",
+          "config": {
+            "chartType": {
+              "values": [
+                {
+                  "display": "Donut",
+                  "value": "donut"
+                },
+                {
+                  "display": "Treemap",
+                  "value": "treemap"
+                }
+              ],
+              "value": "treemap",
+              "displayName": "Chart Type",
+              "editor": "evt-widget-config-select"
+            },
+            "position": {
+              "value": {
+                "sizeX": 1,
+                "sizeY": 1,
+                "row": 3,
+                "col": 2
+              }
+            },
+            "title": {
+              "required": true,
+              "value": "User Actions"
+            },
+            "description": {
+              "value": "Number of actions per active user"
+            }
+          }
+        },
+        {
+          "name": "evtx-overview-user-types",
+          "config": {
+            "position": {
+              "value": {
+                "sizeX": 1,
+                "sizeY": 1,
+                "row": 4,
+                "col": 2
+              }
+            },
+            "title": {
+              "value": "User Type",
+              "required": true
+            },
+            "description": {
+              "value": "Breakdown of new vs returning user"
+            }
+          }
+        },
+        {
+          "name": "evtx-overview-locations",
+          "config": {
+            "chartType": {
+              "values": [
+                {
+                  "display": "Donut",
+                  "value": "donut"
+                },
+                {
+                  "display": "Treemap",
+                  "value": "treemap"
+                }
+              ],
+              "value": "donut",
+              "displayName": "Chart Type",
+              "editor": "evt-widget-config-select"
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": true
+            },
+            "title": {
+              "required": true,
+              "value": "Most active locations"
+            },
+            "description": {
+              "required": false,
+              "value": "Breakdown of activity per market or city"
+            },
+            "position": {
+              "value": {
+                "row": 2,
+                "col": 0,
+                "sizeX": 2
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-overview-products",
+          "config": {
+            "chartType": {
+              "values": [
+                {
+                  "display": "Bar",
+                  "value": "bar"
+                },
+                {
+                  "display": "Line",
+                  "value": "line"
+                }
+              ],
+              "value": "line",
+              "displayName": "Chart Type",
+              "editor": "evt-widget-config-select"
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": true
+            },
+            "title": {
+              "required": true,
+              "value": "Active Products"
+            },
+            "description": {
+              "required": false,
+              "value": "Breakdown of activity per product"
+            },
+            "products": {
+              "editor": "evt-widget-config-products",
+              "value": []
+            },
+            "position": {
+              "value": {
+                "row": 6,
+                "col": 0,
+                "sizeX": 2,
+                "sizeY": 1
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-overview-interactions",
+          "config": {
+            "chartType": {
+              "values": [
+                {
+                  "display": "Donut",
+                  "value": "donut"
+                },
+                {
+                  "display": "Treemap",
+                  "value": "treemap"
+                }
+              ],
+              "value": "donut",
+              "displayName": "Chart Type",
+              "editor": "evt-widget-config-select"
+            },
+            "title": {
+              "required": true,
+              "value": "Interactions"
+            },
+            "description": {
+              "value": "Breakdown of total number of actions performed"
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": false
+            },
+            "actionTypes": {
+              "editor": "evt-widget-config-action-types",
+              "value": []
+            },
+            "position": {
+              "value": {
+                "row": 1,
+                "col": 0,
+                "sizeX": 2,
+                "sizeY": 1
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-overview-engagement",
+          "config": {
+            "chartType": {
+              "values": [
+                {
+                  "display": "Bar",
+                  "value": "bar"
+                },
+                {
+                  "display": "Line",
+                  "value": "line"
+                }
+              ],
+              "value": "bar",
+              "displayName": "Chart Type",
+              "editor": "evt-widget-config-select"
+            },
+            "title": {
+              "required": true,
+              "value": "Engagement"
+            },
+            "description": {
+              "value": "Daily Actions per Action Type"
+            },
+            "showOther": {
+              "editor": "evt-widget-config-boolean",
+              "displayName": "dashboard.customize.options.showOther",
+              "value": false
+            },
+            "actionTypes": {
+              "editor": "evt-widget-config-action-types",
+              "value": []
+            },
+            "position": {
+              "value": {
+                "row": 4,
+                "col": 0,
+                "sizeX": 2
+              }
+            }
+          }
+        },
+        {
+          "name": "evtx-action-list",
+          "config": {
+            "position": {
+              "value": {
+                "sizeX": 1,
+                "sizeY": 2,
+                "row": 1,
+                "col": 2
+              }
+            },
+            "showLocation": {
+              "value": true,
+              "displayName": "components.actions.config.showLocation",
+              "editor": "evt-widget-config-boolean"
+            },
+            "actionTypes": {
+              "value": [],
+              "editor": "evt-widget-config-action-types"
+            },
+            "description": {
+              "value": "Filterable actions list"
+            },
+            "title": {
+              "required": true,
+              "value": "Actions"
+            }
+          }
+        },
+        {
+          "name": "evtx-action-map",
+          "config": {
+            "position": {
+              "value": {
+                "row": 3,
+                "col": 0,
+                "sizeY": 1,
+                "sizeX": 2
+              }
+            },
+            "actionTypes": {
+              "value": [],
+              "editor": "evt-widget-config-action-types"
+            },
+            "description": {
+              "value": "Geographic locations of actions performed"
+            },
+            "title": {
+              "required": true,
+              "value": "Actions Map"
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "params": []
+}
