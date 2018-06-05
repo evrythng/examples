@@ -8,8 +8,8 @@ let appUser = {};
 
 // SET RECOGNITION TYPE HERE
 // const tagRecognitionMethod = "2d"; // QR Code or Data Matrix Code
-const tagRecognitionMethod = "2d"; // Logo / Image Recognition
-// const tagRecognitionMethod = "1d"; // 1D barcode
+// const tagRecognitionMethod = "2d"; // Logo / Image Recognition
+const tagRecognitionMethod = "1d"; // 1D barcode
 
 // Actions
 const scanSuccessAction = "_ScanFound";
@@ -78,13 +78,13 @@ const foundThngId = scanResp => {
   return scanResp[0].results[0].thng.id;
 };
 
-// 
+//
 const saveDetectedItemToLocalStorage = (resourceId, type) => {
   localStorage.setItem("evt-last-scan-id", resourceId);
   localStorage.setItem("evt-last-scan-resource", type);
-}
+};
 
-// Add Action 
+// Add Action
 const addAction = (actionType, tag, scanResp, found) => {
   logMsg(`ADDING ACTION TYPE : ${actionType}`);
   // set action Data
@@ -96,12 +96,12 @@ const addAction = (actionType, tag, scanResp, found) => {
   if (found) {
     if (productFound(scanResp)) {
       action.product = foundProductId(scanResp);
-      // save id of last scanned 
-      saveDetectedItemToLocalStorage(action.product, 'product')
+      // save id of last scanned
+      saveDetectedItemToLocalStorage(action.product, "product");
       logMsg("ADD ACTION TO PRODUCT");
     } else if (thngFound(scanResp)) {
       action.thng = foundThngId(scanResp);
-      saveDetectedItemToLocalStorage(action.thng, 'thng')
+      saveDetectedItemToLocalStorage(action.thng, "thng");
       logMsg("ADD ACTION TO THNG");
     }
   } else {
@@ -152,11 +152,11 @@ const scan = () => {
   // perform scan
   app
     .scan()
-    .then(function (resp) {
+    .then(function(resp) {
       logMsg("Scan Response : " + JSON.stringify(resp, null, 2));
       handleResponse(resp);
     })
-    .catch(function (err) {
+    .catch(function(err) {
       // handle error
       console.error(err);
       handleError(err);
@@ -165,7 +165,8 @@ const scan = () => {
 
 // get user from local storage
 const getCurrentUser = () => {
-  return new EVT.User({
+  return new EVT.User(
+    {
       id: localStorage["evt-user"],
       apiKey: localStorage["evt-user-key"]
     },
@@ -196,7 +197,7 @@ const addExampleAction = () => {
     });
 };
 // set up EVT , and create an app user.
-const setUp = () => {
+(function() {
   // setup EVT
   EVTSetup();
   // create anonymous user
@@ -205,6 +206,4 @@ const setUp = () => {
   });
   // show scan type on UI
   $(".recognition-type").text("Scan Type : " + tagRecognitionMethod);
-};
-
-setUp();
+})();
