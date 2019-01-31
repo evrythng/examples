@@ -1,83 +1,58 @@
+<!DOCTYPE html>
 <html>
+  <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-  <!-- Latest compiled and minified CSS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="https://d10ka0m22z5ju5.cloudfront.net/toolkit/third-parties/mqttws31.js"></script>
 
-  <!-- Optional theme -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+    <script type="text/javascript">
+      $(function () {
+        const connectToBroker = () => {
+          const client = new Messaging.Client('ws.evrythng.com', 443, `client_${Date.now()}`);
+          console.log(client);
+          client.startTrace();
+          client.onMessageArrived = (message) => {
+            $('#messages').append(`<li class='list-group-item'>${message.payloadString}</li>`);
+          };
 
-  <!-- Latest compiled and minified JavaScript -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+          console.log('Connecting...');
+          client.connect({
+            useSSL: true,
+            onSuccess: () => {
+              console.log('Connected successfully!');
+              client.subscribe($('#resource').val() + '?access_token=' + $('#key').val());
+            },
+          });
+        };
 
-  <script type="text/JavaScript" src="https://d10ka0m22z5ju5.cloudfront.net/toolkit/third-parties/mqttws31.js"></script>
-
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/exporting.js"></script>
-
-  <script type="text/JavaScript">
-    $(function () {
-    var client;
-    dataArray = [];
-    function doConnect() {
-      var clientId = "test_" + new Date().getTime()
-      client = new Messaging.Client("ws.evrythng.com/mqtt", 443, clientId);
-      console.log("Client instantiated.");
-      client.startTrace();
-      console.log("Now trying to connect...");
-      client.onMessageArrived = onMessageArrived;
-      client.connect({onSuccess:onConnect, useSSL:true});
-    }
-    function onConnect() {
-      console.log("connection established");
-      doSubscribe();
-    }
-    function doSubscribe() {
-      client.subscribe($('#resource').val() + "?access_token=" + $('#key').val());
-    }
-    function onMessageArrived(message) {
-      console.log("onMessageArrived:"+ message.payloadString);
-      showMessage(message.payloadString);
-      dataArray.push([0, 1]);
-    };
-    function showMessage(message) {
-      $('#messages').append("<li class='list-group-item'>"
-        + message + "</li>");
-    }
-    $( "#connect" ).click(function() {
-      doConnect();
-    });
-  })
-  </script>
-</head>
-
+        $('#connect').click(connectToBroker);
+      });
+    </script>
+  </head>
 <body>
-
-  <body role="document">
-    <div class="container">
-      <div class="panel panel-default">
-        <div class="panel-heading">API Key</div>
+  <div class="container">
+    <div class="panel panel-default">
+      <div class="panel-heading">API Key</div>
+      <div class="panel-body">
+        <input id="key" name="textinput" type="text" placeholder="API-KEY" class="input-xlarge">
+        <input id="resource" name="textinput" type="text" placeholder="RESOURCE" class="input-xlarge">
+        <button id="connect" name="singlebutton" class="btn btn-primary">Connect</button>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+    <div class="page-header">
+      <div class="panel panel-success">
+        <div class="panel-heading">Incoming messages</div>
         <div class="panel-body">
-          <input id="key" name="textinput" type="text" placeholder="API-KEY" class="input-xlarge">
-          <input id="resource" name="textinput" type="text" placeholder="RESOURCE" class="input-xlarge">
-          <button id="connect" name="singlebutton" class="btn btn-primary">Connect</button>
+          <ul id="messages" class="list-group"></ul>
         </div>
       </div>
     </div>
-    <div class="container">
-      <div class="page-header">
-        <div class="panel panel-success">
-          <div class="panel-heading">Incoming messages</div>
-          <div class="panel-body">
-            <ul id="messages" class="list-group"></ul>
-          </div>
-        </div>
-      </div>
-    </div>
-  </body>
-
+  </div>
 </html>
