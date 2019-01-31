@@ -14,7 +14,6 @@
       $(function () {
         const connectToBroker = () => {
           const client = new Messaging.Client('ws.evrythng.com', 443, `client_${Date.now()}`);
-          console.log(client);
           client.startTrace();
           client.onMessageArrived = (message) => {
             $('#messages').append(`<li class='list-group-item'>${message.payloadString}</li>`);
