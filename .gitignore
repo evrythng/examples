@@ -33,3 +33,4 @@ build/Release
 # This is a public repository so no IDE configs
 **/.idea/
 
+node_modules
