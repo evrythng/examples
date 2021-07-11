@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" targetNamespace="http://schema.org/Product" xmlns:product="http://schema.org/Product">
+    <xs:element name="Products">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element maxOccurs="unbounded" ref="product:Product"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+    <xs:element name="Product">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element ref="product:name"/>
+                <xs:element ref="product:description"/>
+                <xs:element ref="product:gtin13"/>
+                <xs:element ref="product:brand"/>
+                <xs:element ref="product:category"/>
+                <xs:element ref="product:image"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:simpleType name="GTIN_13_Type">
+        <xs:annotation>
+            <xs:documentation>EAN. See https://en.wikipedia.org/wiki/International_Article_Number_%28EAN%29</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:pattern value="([0-9]{13})?"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+    <xs:element name="name" type="xs:string"/>
+    <xs:element name="description" type="xs:string"/>
+    <xs:element name="gtin13" type="product:GTIN_13_Type"/>
+    <xs:element name="brand" type="xs:NCName"/>
+    <xs:element name="category" type="xs:string"/>
+    <xs:element name="image" type="xs:anyURI"/>
+</xs:schema>

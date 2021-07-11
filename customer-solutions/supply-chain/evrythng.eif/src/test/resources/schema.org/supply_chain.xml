@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Products xmlns="http://schema.org/Product">
+    <Product>
+        <name>Glass</name>
+        <description>75 cl empty bottles</description>
+        <brand>Glass Suppliers Ltd</brand>
+        <category>Raw Material</category>
+        <gtin13>8274659839027</gtin13>
+        <image>https://content.screencast.com/users/Dashenhurst/folders/Jing/media/5607a5c2-6e40-42b4-8dd7-0e92762e2926/00002368.png</image>
+        <additionalProperty>
+            <name>qty_per_pallet</name>
+            <value>960</value>
+        </additionalProperty>
+    </Product>
+    <Product>
+        <name>Red Wine</name>
+        <description>Finished Product, Red Wine</description>
+        <category>Finished Product/Wine</category>
+        <gtin13>3754505730900</gtin13>
+        <image>https://content.screencast.com/users/Dashenhurst/folders/Jing/media/df39407e-2a1d-4263-a80d-91b78a66b6e5/00002366.png</image>
+    </Product>
+</Products>
