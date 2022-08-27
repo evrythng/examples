@@ -3,6 +3,6 @@
   "author": "EVRYTHNG",
   "license": "Apache-2.0",
   "dependencies": {
-    "mqtt": "^2.18.8"
+    "mqtt": "^2.18.9"
   }
 }
